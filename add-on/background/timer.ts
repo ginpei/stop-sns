@@ -1,3 +1,5 @@
+'use strict';
+
 namespace Timer {
   class Timer {
     startedAt = 0;
@@ -31,7 +33,7 @@ namespace Timer {
       this.updateBadge();
     }
 
-    private updateBadge() {
+    private updateBadge () {
       browser.browserAction.setBadgeText({
         text: this.remainMinuteText,
       });

@@ -7,6 +7,16 @@ namespace SnsBarrier {
     [anyObjKey: string]: any
   }
 
+  function createElement (html: string) {
+    const builder = document.createElement('div');
+    builder.innerHTML = html.trim();
+    const el = builder.firstElementChild as HTMLElement;
+    // if (styles) {
+    //   applyStyles(el, styles);
+    // }
+    return el;
+  }
+
   class SnsBarrier {
     async run () {
       if (await this.isRunning()) {
@@ -45,7 +55,7 @@ namespace SnsBarrier {
       document.body.style.overflow = 'hidden';
     }
 
-    private buildElements() {
+    private buildElements () {
       return createElement(`
         <div id="stopSns">
           <div class="stopSns-content">
@@ -57,16 +67,6 @@ namespace SnsBarrier {
         </div>
       `);
     }
-  }
-
-  function createElement (html: string) {
-    const builder = document.createElement('div');
-    builder.innerHTML = html.trim();
-    const el = builder.firstElementChild as HTMLElement;
-    // if (styles) {
-    //   applyStyles(el, styles);
-    // }
-    return el;
   }
 
   const controller = new SnsBarrier();

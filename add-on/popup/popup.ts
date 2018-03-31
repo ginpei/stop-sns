@@ -1,4 +1,7 @@
+'use strict';
+
 namespace Popup {
+  /* global PopupToggle, on, off */
   enum PopupToggle {
     on = 'on',
     off = 'off',
@@ -22,7 +25,7 @@ namespace Popup {
       }
     }
 
-    constructor(options: { storage: MyStorage }) {
+    constructor (options: { storage: MyStorage }) {
       this.storage = options.storage;
     }
 
