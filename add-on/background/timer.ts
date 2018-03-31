@@ -14,7 +14,7 @@ namespace Timer {
 
       const sec = (Date.now() - this.startedAt) / 1000;
       const min = sec / 60;
-      const sMin = Math.floor(min / 1000).toString();
+      const sMin = Math.floor(min).toString();
       return sMin;
     }
 
