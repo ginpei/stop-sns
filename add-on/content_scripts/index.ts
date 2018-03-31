@@ -41,7 +41,7 @@ function reset () {
   document.body.style.overflow = '';
 }
 
-function run () {
+function main () {
   reset();
 
   const el = createElement(`
@@ -66,4 +66,4 @@ function run () {
   document.body.style.overflow = 'hidden';
 }
 
-run();
+main();
