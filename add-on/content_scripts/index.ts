@@ -32,16 +32,7 @@ namespace SnsBarrier {
     showBarrier () {
       this.reset();
 
-      const el = createElement(`
-        <div id="stopSns">
-          <div class="stopSns-content">
-            <h1 class="stopSns-message">Stop SNS</h1>
-            <div>
-              <button class="stopSns-ok">Unleash your lust</button>
-            </div>
-          </div>
-        </div>
-      `);
+      const el = this.buildElements();
 
       const okButton = el.querySelector('.stopSns-ok');
       if (okButton) {
@@ -52,6 +43,19 @@ namespace SnsBarrier {
 
       document.body.appendChild(el);
       document.body.style.overflow = 'hidden';
+    }
+
+    private buildElements() {
+      return createElement(`
+        <div id="stopSns">
+          <div class="stopSns-content">
+            <h1 class="stopSns-message">Stop SNS</h1>
+            <div>
+              <button class="stopSns-ok">Unleash your lust</button>
+            </div>
+          </div>
+        </div>
+      `);
     }
   }
 
