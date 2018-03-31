@@ -33,9 +33,9 @@ function createElement (html: string, styles?: object) {
   return el;
 }
 
-function reset() {
+function reset () {
   const el = document.querySelector('#stopSns');
-  if (el && el.parentElement) { 
+  if (el && el.parentElement) {
     el.parentElement.removeChild(el);
   }
   document.body.style.overflow = '';

@@ -23,6 +23,9 @@ module.exports = {
       ],
     }],
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-unused-vars': [ 'error', {
+      argsIgnorePattern: '^(_|event)$',
+    }],
     'space-before-function-paren': ['error', 'always'],
     'strict': ['error', 'global'],
   },
