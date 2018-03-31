@@ -18,5 +18,10 @@
         "content_scripts/main.css"
       ]
     }
-  ]
+  ],
+  "browser_action": {
+    "default_icon": "icon-512.png",
+    "default_title": "Stop SNS",
+    "default_popup": "popup/index.html"
+  }
 }
