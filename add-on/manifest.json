@@ -12,7 +12,10 @@
         "https://twitter.com/*"
       ],
       "js": [
-        "index.js"
+        "content_scripts/index.js"
+      ],
+      "css": [
+        "content_scripts/main.css"
       ]
     }
   ]

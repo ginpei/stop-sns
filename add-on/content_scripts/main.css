@@ -1,0 +1,31 @@
+#stopSns {
+  align-items: center;
+  background-color: rgba(0,0,0,0.7);
+  display: flex;
+  font-size: 30px;
+  justify-content: center;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+#stopSns .stopSns-content {
+  text-align: center;
+}
+
+#stopSns .stopSns-message {
+  color: #fff;
+  font-size: 100px;
+  margin-bottom: 1em;
+  text-shadow: 1px 1px 0 #000;
+}
+
+#stopSns .stopSns-ok {
+  background-color: #c00;
+  border: 2px solid #930;
+  color: #fff;
+  padding: 1em;
+}
