@@ -17,7 +17,7 @@ class Popup {
       const sToggle = running ? PopupToggle.on : PopupToggle.off;
       this.elToggle.setAttribute('data-bigSwitch-toggle', sToggle);
 
-      this.storage.save({ running });
+      this.onRunningChange(running);
     }
   }
 
@@ -37,6 +37,15 @@ class Popup {
 
   toggle () {
     this.running = !this.running;
+  }
+
+  onRunningChange (running: boolean) {
+    this.storage.save({ running });
+
+    const text = running ? 'Running' : '';
+    browser.browserAction.setBadgeText({
+      text: text,
+    });
   }
 }
 
