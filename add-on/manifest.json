@@ -6,6 +6,9 @@
   "icons": {
     "48": "icon-512.png"
   },
+  "permissions": [
+    "storage"
+  ],
   "content_scripts": [
     {
       "matches": [

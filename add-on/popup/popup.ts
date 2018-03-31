@@ -4,6 +4,7 @@ enum PopupToggle {
 }
 
 class Popup {
+  storage: MyStorage;
   elToggle = document.querySelector('#toggle')!;
 
   get running () {
@@ -12,11 +13,23 @@ class Popup {
   }
 
   set running (running: boolean) {
-    const sToggle = running ? PopupToggle.on : PopupToggle.off;
-    this.elToggle.setAttribute('data-bigSwitch-toggle', sToggle);
+    if (running !== this.running) {
+      const sToggle = running ? PopupToggle.on : PopupToggle.off;
+      this.elToggle.setAttribute('data-bigSwitch-toggle', sToggle);
+
+      this.storage.save({ running });
+    }
+  }
+
+  constructor(options: { storage: MyStorage }) {
+    this.storage = options.storage;
   }
 
   start () {
+    this.storage.load().then((storage) => {
+      this.running = storage.running;
+    });
+
     this.elToggle.addEventListener('click', (event) => {
       this.toggle();
     });
@@ -27,5 +40,24 @@ class Popup {
   }
 }
 
-const controller = new Popup();
+interface Status {
+  running: boolean
+}
+
+class MyStorage {
+  async load () {
+    // TODO find types
+    // @ts-ignore
+    return await browser.storage.local.get(['running']) as Status;
+  }
+
+  async save (status: Status) {
+    // TODO find types
+    // @ts-ignore
+    await browser.storage.local.set(status);
+  }
+}
+
+const myStorage = new MyStorage();
+const controller = new Popup({ storage: myStorage });
 controller.start();

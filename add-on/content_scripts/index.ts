@@ -41,7 +41,14 @@ function reset () {
   document.body.style.overflow = '';
 }
 
-function main () {
+async function isRunning () {
+  // TODO find types
+  // @ts-ignore
+  const { running } = await browser.storage.local.get(['running']);
+  return running;
+}
+
+function showBarrier () {
   reset();
 
   const el = createElement(`
@@ -64,6 +71,12 @@ function main () {
 
   document.body.appendChild(el);
   document.body.style.overflow = 'hidden';
+}
+
+async function main () {
+  if (await isRunning()) {
+    showBarrier();
+  }
 }
 
 main();
