@@ -1,4 +1,3 @@
-/* global PopupToggle, on, off */
 enum PopupToggle {
   on = "on",
   off = "off",
