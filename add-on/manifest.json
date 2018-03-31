@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "Stop SNS",
+  "version": "1.0",
+  "description": "Help you to spend time on SNS.",
+  "icons": {
+    "48": "icon-512.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://twitter.com/*"
+      ],
+      "js": [
+        "index.js"
+      ]
+    }
+  ]
+}
