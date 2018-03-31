@@ -2,7 +2,6 @@
   align-items: center;
   background-color: rgba(0,0,0,0.7);
   display: flex;
-  font-size: 30px;
   justify-content: center;
   height: 100%;
   left: 0;
@@ -27,5 +26,6 @@
   background-color: #c00;
   border: 2px solid #930;
   color: #fff;
+  font-size: 30px;
   padding: 1em;
 }
