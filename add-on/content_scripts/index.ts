@@ -3,7 +3,7 @@ interface IAnyObj {
   [anyObjKey: string]: any;
 }
 
-function createElement(html: string) {
+function createElement (html: string) {
   const builder = document.createElement("div");
   builder.innerHTML = html.trim();
   const el = builder.firstElementChild as HTMLElement;
@@ -14,20 +14,20 @@ function createElement(html: string) {
 }
 
 class SnsBarrier {
-  public async run() {
+  public async run () {
     if (await this.isRunning()) {
       this.showBarrier();
     }
   }
 
-  public async isRunning() {
+  public async isRunning () {
     // TODO find types
     // @ts-ignore
     const { running } = await browser.storage.local.get(["running"]);
     return running;
   }
 
-  public reset() {
+  public reset () {
     const el = document.querySelector("#stopSns");
     if (el && el.parentElement) {
       el.parentElement.removeChild(el);
@@ -35,7 +35,7 @@ class SnsBarrier {
     document.body.style.overflow = "";
   }
 
-  public showBarrier() {
+  public showBarrier () {
     this.reset();
 
     const el = this.buildElements();
@@ -51,7 +51,7 @@ class SnsBarrier {
     document.body.style.overflow = "hidden";
   }
 
-  private buildElements() {
+  private buildElements () {
     return createElement(`
       <div id="stopSns">
         <div class="stopSns-content">

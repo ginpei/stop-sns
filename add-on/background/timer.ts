@@ -2,11 +2,11 @@ class Timer {
   public startedAt = 0;
   public tmInterval = 0;
 
-  get running() {
+  get running () {
     return !!this.startedAt;
   }
 
-  private get remainMinuteText() {
+  private get remainMinuteText () {
     if (!this.running) {
       return "";
     }
@@ -17,7 +17,7 @@ class Timer {
     return sMin;
   }
 
-  public start() {
+  public start () {
     this.tmInterval = setInterval(() => {
       this.updateBadge();
     }, 100);
@@ -30,7 +30,7 @@ class Timer {
     this.updateBadge();
   }
 
-  private updateBadge() {
+  private updateBadge () {
     browser.browserAction.setBadgeText({
       text: this.remainMinuteText,
     });

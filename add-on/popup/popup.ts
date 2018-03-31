@@ -8,12 +8,12 @@ class Popup {
   public storage: MyStorage;
   public elToggle = document.querySelector("#toggle")!;
 
-  get running() {
+  get running () {
     const sToggle = this.elToggle.getAttribute("data-bigSwitch-toggle");
     return sToggle === PopupToggle.on;
   }
 
-  set running(running: boolean) {
+  set running (running: boolean) {
     if (running !== this.running) {
       const sToggle = running ? PopupToggle.on : PopupToggle.off;
       this.elToggle.setAttribute("data-bigSwitch-toggle", sToggle);
@@ -22,11 +22,11 @@ class Popup {
     }
   }
 
-  constructor(options: { storage: MyStorage }) {
+  constructor (options: { storage: MyStorage }) {
     this.storage = options.storage;
   }
 
-  public start() {
+  public start () {
     this.storage.load().then((storage) => {
       this.running = storage.running;
     });
@@ -36,11 +36,11 @@ class Popup {
     });
   }
 
-  public toggle() {
+  public toggle () {
     this.running = !this.running;
   }
 
-  public onRunningChange(running: boolean) {
+  public onRunningChange (running: boolean) {
     this.storage.save({ running });
 
     browser.runtime.sendMessage({ running, type: "toggle" });
