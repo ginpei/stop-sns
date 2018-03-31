@@ -43,10 +43,7 @@ namespace Popup {
     onRunningChange (running: boolean) {
       this.storage.save({ running });
 
-      const text = running ? 'Running' : '';
-      browser.browserAction.setBadgeText({
-        text: text,
-      });
+      browser.runtime.sendMessage({ running, type: 'toggle' });
     }
   }
 

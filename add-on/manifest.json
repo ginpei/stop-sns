@@ -9,6 +9,11 @@
   "permissions": [
     "storage"
   ],
+  "background": {
+    "scripts": [
+      "background/timer.js"
+    ]
+  },
   "content_scripts": [
     {
       "matches": [
