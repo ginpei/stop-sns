@@ -11,6 +11,7 @@
   ],
   "background": {
     "scripts": [
+      "lib/MyStorage.js",
       "background/timer.js"
     ]
   },
@@ -21,6 +22,7 @@
         "https://www.facebook.com/*"
       ],
       "js": [
+        "lib/MyStorage.js",
         "content_scripts/index.js"
       ],
       "css": [

@@ -2,7 +2,7 @@ interface IStatus {
   running: boolean;
 }
 
-export class MyStorage {
+class MyStorage {
   public async load () {
     // TODO find types
     // @ts-ignore

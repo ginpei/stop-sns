@@ -1,5 +1,3 @@
-import { MyStorage } from "./MyStorage.js";
-
 enum PopupToggle {
   on = "on",
   off = "off",
