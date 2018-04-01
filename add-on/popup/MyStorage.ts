@@ -1,4 +1,8 @@
-class MyStorage {
+interface IStatus {
+  running: boolean;
+}
+
+export class MyStorage {
   public async load () {
     // TODO find types
     // @ts-ignore

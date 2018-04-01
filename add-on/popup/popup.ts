@@ -1,3 +1,5 @@
+import { MyStorage } from "./MyStorage.js";
+
 enum PopupToggle {
   on = "on",
   off = "off",
@@ -44,10 +46,6 @@ class Popup {
 
     browser.runtime.sendMessage({ running, type: "toggle" });
   }
-}
-
-interface IStatus {
-  running: boolean;
 }
 
 const myStorage = new MyStorage();
