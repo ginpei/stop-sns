@@ -21,9 +21,10 @@ class Timer {
   }
 
   public async start () {
-    this.tmInterval = setInterval(() => {
-      this.updateBadge();
-    }, 100);
+    // TODO implement timers
+    // this.tmInterval = setInterval(() => {
+    //   this.updateBadge();
+    // }, 100);
 
     this.status.onChange((changes: any) => {
       this.updateBadge();
