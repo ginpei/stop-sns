@@ -3,6 +3,7 @@
   "name": "Stop SNS",
   "version": "1.0",
   "description": "Help you to spend time on SNS.",
+  "author": "Ginpei Takanashi",
   "icons": {
     "48": "icon-512.png"
   },
@@ -15,7 +16,8 @@
       "lib/Status.js",
       "background/Timer.js",
       "background/index.js"
-    ]
+    ],
+    "persistent": false
   },
   "content_scripts": [
     {

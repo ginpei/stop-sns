@@ -124,14 +124,16 @@ class Status {
       "running",
       "startedBreakingAt",
     ];
-    // @ts-ignore
-    if (window.info_ginpei_runningInChrome) {
+
+    if (browser.storage.local.get.length === 1) {
+      // for Firefox
+      return await browser.storage.local.get(keys);
+    } else {
+      // for Chrome and Edge
       return new Promise((resolve, reject) => {
         // @ts-ignore
         browser.storage.local.get(keys, resolve);
       });
-    } else {
-      return await browser.storage.local.get(keys);
     }
   }
 
