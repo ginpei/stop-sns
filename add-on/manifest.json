@@ -22,6 +22,7 @@
         "https://twitter.com/*",
         "https://www.facebook.com/*"
       ],
+      "run_at": "document_end",
       "js": [
         "lib/Status.js",
         "content_scripts/SnsBarrier.js",
