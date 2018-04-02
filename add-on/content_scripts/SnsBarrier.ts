@@ -36,7 +36,7 @@ class SnsBarrier {
         <div class="stopSns-content">
           <h1 class="stopSns-message">🛇</h1>
           <div>
-            <button class="stopSns-ok">Unleash your lust</button>
+            <button class="stopSns-ok">Unleash your desire...</button>
           </div>
         </div>
       </div>
