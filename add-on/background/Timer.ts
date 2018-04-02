@@ -17,25 +17,26 @@ class Timer {
     return sMin;
   }
 
-  public start () {
+  constructor (private readonly status: Status) {
+  }
+
+  public async start () {
     this.tmInterval = setInterval(() => {
       this.updateBadge();
     }, 100);
 
-    browser.runtime.onMessage.addListener((message: any) => {
-      this.startedAt = message.running ? Date.now() : 0;
+    this.status.onChange((changes: any) => {
       this.updateBadge();
     });
+
+    await this.status.init();
 
     this.updateBadge();
   }
 
   private updateBadge () {
     browser.browserAction.setBadgeText({
-      text: this.remainMinuteText,
+      text: this.status.running ? "Running" : "",
     });
   }
 }
-
-const timer = new Timer();
-timer.start();
