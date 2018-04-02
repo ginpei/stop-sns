@@ -37,7 +37,7 @@ class Timer {
 
   private updateBadge () {
     browser.browserAction.setBadgeText({
-      text: this.status.running ? "Running" : "",
+      text: this.status.running ? "🛇" : "",
     });
   }
 }
