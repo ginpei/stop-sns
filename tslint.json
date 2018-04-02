@@ -5,7 +5,8 @@
     ],
     "jsRules": {},
     "rules": {
-      "space-before-function-paren": [true, "always"]
+      "space-before-function-paren": [true, "always"],
+      "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"]
     },
     "rulesDirectory": []
 }
