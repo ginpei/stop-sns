@@ -1,3 +1,8 @@
+interface IStatusSaveData {
+  running: boolean;
+  startedBreakingAt: number;
+}
+
 /**
  * @example
  * const status = new Status();
@@ -46,7 +51,7 @@ class Status {
   /**
    * @see #save
    */
-  protected get saveDataValues () {
+  protected get saveDataValues (): IStatusSaveData {
     return {
       running: this._running,
       startedBreakingAt: this._startedBreakingAt,
@@ -55,14 +60,18 @@ class Status {
 
   public async init () {
     browser.storage.onChanged.addListener((changes, areaName) => {
-      this._running = changes.running.newValue;
-      this._startedBreakingAt = changes.startedBreakingAt.newValue;
+      if (changes.running) {
+        this._running = changes.running.newValue;
+      }
+      if (changes.startedBreakingAt) {
+        this._startedBreakingAt = changes.startedBreakingAt.newValue;
+      }
       this.runOnChangeCallbacks(changes, areaName);
     });
 
-    const values =  await browser.storage.local.get();
-    this._running = values.running as boolean;
-    this._startedBreakingAt = values.startedBreakingAt as number;
+    const values =  await this.readStorage() as IStatusSaveData;
+    this._running = values.running;
+    this._startedBreakingAt = values.startedBreakingAt;
 
     return values;
   }
@@ -105,6 +114,25 @@ class Status {
 
   private runOnChangeCallbacks (changes: any, areaName: string) {
     this.onChangeCallbacks.forEach((fn) => fn(changes));
+  }
+
+  /**
+   * @returns Promise<IStatusSaveData>
+   */
+  private async readStorage () {
+    const keys = [
+      "running",
+      "startedBreakingAt",
+    ];
+    // @ts-ignore
+    if (window.info_ginpei_runningInChrome) {
+      return new Promise((resolve, reject) => {
+        // @ts-ignore
+        browser.storage.local.get(keys, resolve);
+      });
+    } else {
+      return await browser.storage.local.get(keys);
+    }
   }
 
   /**

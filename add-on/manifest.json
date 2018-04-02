@@ -11,6 +11,7 @@
   ],
   "background": {
     "scripts": [
+      "lib/chrome-supports.js",
       "lib/Status.js",
       "background/Timer.js",
       "background/index.js"
@@ -25,6 +26,7 @@
       ],
       "run_at": "document_end",
       "js": [
+        "lib/chrome-supports.js",
         "lib/Status.js",
         "content_scripts/SnsBarrier.js",
         "content_scripts/index.js"
