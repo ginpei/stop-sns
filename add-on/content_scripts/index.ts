@@ -1,6 +1,6 @@
 (async () => {
   const status = new Status();
-  const snsBarrier = new SnsBarrier();
+  const snsBarrier = new SnsBarrier(status);
 
   function toggle () {
     if (status.running) {

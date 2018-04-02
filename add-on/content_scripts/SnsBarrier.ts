@@ -1,4 +1,9 @@
 class SnsBarrier {
+  private tmShow = 0;
+
+  constructor (private readonly status: Status) {
+  }
+
   public reset () {
     const el = document.querySelector("#stopSns");
     if (el && el.parentElement) {
@@ -15,6 +20,7 @@ class SnsBarrier {
     const okButton = el.querySelector(".stopSns-ok");
     if (okButton) {
       okButton.addEventListener("click", (event) => {
+        this.startShowTimer();
         this.reset();
       });
     }
@@ -41,5 +47,12 @@ class SnsBarrier {
         </div>
       </div>
     `);
+  }
+
+  private startShowTimer () {
+    const interval = 30 * 1000; // 30 sec
+    this.tmShow = setTimeout(() => {
+      this.show();
+    }, interval);
   }
 }
