@@ -1,8 +1,4 @@
 class SnsBarrier {
-  public async run () {
-    this.showBarrier();
-  }
-
   public reset () {
     const el = document.querySelector("#stopSns");
     if (el && el.parentElement) {
@@ -11,7 +7,7 @@ class SnsBarrier {
     document.body.style.overflow = "";
   }
 
-  public showBarrier () {
+  public show () {
     this.reset();
 
     const el = this.buildElements();

@@ -1,8 +1,16 @@
 (async () => {
   const status = new Status();
-  await status.init();
-  if (status.running) {
-    const snsBarrier = new SnsBarrier();
-    snsBarrier.run();
+  const snsBarrier = new SnsBarrier();
+
+  function toggle () {
+    if (status.running) {
+      snsBarrier.show();
+    } else {
+      snsBarrier.reset();
+    }
   }
+
+  status.onChange(() => toggle());
+  await status.init();
+  toggle();
 })();
