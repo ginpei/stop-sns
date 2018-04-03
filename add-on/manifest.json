@@ -5,7 +5,8 @@
   "description": "Help you to spend time on SNS.",
   "author": "Ginpei Takanashi",
   "icons": {
-    "48": "icon-512.png"
+    "48": "icons/icon-48.png",
+    "1000": "icons/icon-1000.png"
   },
   "permissions": [
     "storage"
@@ -39,7 +40,7 @@
     }
   ],
   "browser_action": {
-    "default_icon": "icon-512.png",
+    "default_icon": "icons/icon-48.png",
     "default_title": "Stop SNS",
     "default_popup": "popup/popup.html"
   }
