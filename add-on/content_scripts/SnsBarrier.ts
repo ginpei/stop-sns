@@ -5,6 +5,8 @@ class SnsBarrier {
   }
 
   public reset () {
+    clearTimeout(this.tmShow);
+
     const el = document.querySelector("#stopSns");
     if (el && el.parentElement) {
       el.parentElement.removeChild(el);
@@ -20,8 +22,8 @@ class SnsBarrier {
     const okButton = el.querySelector(".stopSns-ok");
     if (okButton) {
       okButton.addEventListener("click", (event) => {
-        this.startShowTimer();
         this.reset();
+        this.startShowTimer();
       });
     }
 
