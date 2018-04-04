@@ -69,7 +69,7 @@ class Status {
       this.runOnChangeCallbacks(changes, areaName);
     });
 
-    const values =  await this.readStorage() as IStatusSaveData;
+    const values =  await this.readStorage();
     this._running = values.running;
     this._startedBreakingAt = values.startedBreakingAt;
 
@@ -119,7 +119,7 @@ class Status {
   /**
    * @returns Promise<IStatusSaveData>
    */
-  private async readStorage () {
+  private async readStorage (): Promise<IStatusSaveData> {
     const keys = [
       "running",
       "startedBreakingAt",
@@ -127,14 +127,33 @@ class Status {
 
     if (browser.storage.local.get.length === 1) {
       // for Firefox
-      return await browser.storage.local.get(keys);
+      const result = await browser.storage.local.get(keys);
+      return this.convertStorageObjectToStatusSaveData(result);
     } else {
       // for Chrome and Edge
-      return new Promise((resolve, reject) => {
+      return new Promise<IStatusSaveData>((resolve, reject) => {
         // @ts-ignore
-        browser.storage.local.get(keys, resolve);
+        browser.storage.local.get(keys, (result) => {
+          return this.convertStorageObjectToStatusSaveData(result);
+        });
       });
     }
+  }
+
+  private convertStorageObjectToStatusSaveData
+    (obj: browser.storage.StorageObject): IStatusSaveData {
+
+    if (typeof obj.running !== "boolean") {
+      throw new TypeError();
+    }
+    if (typeof obj.startedBreakingAt !== "number") {
+      throw new TypeError();
+    }
+
+    return {
+      running: obj.running,
+      startedBreakingAt: obj.startedBreakingAt,
+    };
   }
 
   /**

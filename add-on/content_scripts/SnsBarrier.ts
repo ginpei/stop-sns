@@ -18,6 +18,9 @@ class SnsBarrier {
     this.reset();
 
     const el = this.buildElements();
+    if (!el) {
+      throw new Error("Failed to build the element");
+    }
 
     const okButton = el.querySelector(".stopSns-ok");
     if (okButton) {
@@ -35,7 +38,7 @@ class SnsBarrier {
     function _createElement (html: string) {
       const builder = document.createElement("div");
       builder.innerHTML = html.trim();
-      const el = builder.firstElementChild as HTMLElement;
+      const el = builder.firstElementChild;
       return el;
     }
 
