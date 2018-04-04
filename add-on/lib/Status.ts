@@ -125,17 +125,19 @@ class Status {
       "startedBreakingAt",
     ];
 
+    const result = await this.browser_storage_local_get(keys);
+    return this.convertStorageObjectToStatusSaveData(result);
+  }
+
+  private async browser_storage_local_get (keys: string[]) {
     if (browser.storage.local.get.length === 1) {
       // for Firefox
-      const result = await browser.storage.local.get(keys);
-      return this.convertStorageObjectToStatusSaveData(result);
+      return await browser.storage.local.get(keys);
     } else {
       // for Chrome and Edge
-      return new Promise<IStatusSaveData>((resolve, reject) => {
+      return new Promise<browser.storage.StorageObject>((resolve, reject) => {
         // @ts-ignore
-        browser.storage.local.get(keys, (result) => {
-          return this.convertStorageObjectToStatusSaveData(result);
-        });
+        browser.storage.local.get(keys, resolve);
       });
     }
   }
