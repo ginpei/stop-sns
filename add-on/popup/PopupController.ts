@@ -4,7 +4,7 @@ enum PopupToggle {
 }
 
 class PopupController {
-  public elToggle = document.querySelector("#toggle")!;
+  public elToggle: HTMLElement;
 
   // set running (running: boolean) {
   //   if (running === this._running) {
@@ -22,6 +22,11 @@ class PopupController {
   // }
 
   constructor (public status: Status) {
+    const elToggle = document.querySelector("#toggle");
+    if (!(elToggle instanceof HTMLElement)) {
+      throw new TypeError();
+    }
+    this.elToggle = elToggle;
   }
 
   public async start () {
