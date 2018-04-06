@@ -32,7 +32,7 @@ class Status {
     return this._startedBreakingAt !== 0;
   }
 
-  private get saveData () {
+  private get saveData (): IStatusSaveData {
     return {
       running: this._running,
       startedBreakingAt: this._startedBreakingAt,
@@ -140,6 +140,6 @@ class Status {
    * It would emit something.
    */
   private async save () {
-    await browser.storage.local.set(this.saveData);
+    await browser.storage.local.set(this.saveData as { [name: string]: any });
   }
 }
