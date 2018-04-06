@@ -48,16 +48,6 @@ class Status {
     return this.breaking ? Date.now() - this._startedBreakingAt : -1;
   }
 
-  /**
-   * @see #save
-   */
-  protected get saveDataValues (): IStatusSaveData {
-    return {
-      running: this._running,
-      startedBreakingAt: this._startedBreakingAt,
-    };
-  }
-
   public async init () {
     browser.storage.onChanged.addListener((changes, areaName) => {
       if (changes.running) {
