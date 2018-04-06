@@ -102,14 +102,14 @@ class Status {
     this.onChangeCallbacks.push(callback);
   }
 
-  private runOnChangeCallbacks (changes: any, areaName: string) {
+  protected runOnChangeCallbacks (changes: any, areaName: string) {
     this.onChangeCallbacks.forEach((fn) => fn(changes));
   }
 
   /**
    * @returns Promise<IStatusSaveData>
    */
-  private async readStorage (): Promise<IStatusSaveData> {
+  protected async readStorage (): Promise<IStatusSaveData> {
     const keys = [
       "running",
       "startedBreakingAt",
@@ -119,7 +119,7 @@ class Status {
     return this.convertStorageObjectToStatusSaveData(result);
   }
 
-  private convertStorageObjectToStatusSaveData
+  protected convertStorageObjectToStatusSaveData
     (obj: browser.storage.StorageObject): IStatusSaveData {
 
     if (typeof obj.running !== "boolean") {
@@ -139,7 +139,7 @@ class Status {
    * Save current style.
    * It would emit something.
    */
-  private async save () {
+  protected async save () {
     await browser.storage.local.set(this.saveData as { [name: string]: any });
   }
 }
