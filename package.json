@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "lint": "tslint add-on/**/*.ts",
-    "start": "tsc --sourceMap --watch"
+    "start": "tsc --inlineSourceMap --watch"
   },
   "dependencies": {},
   "devDependencies": {
