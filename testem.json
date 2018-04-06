@@ -1,0 +1,16 @@
+{
+  "before_tests": "tsc --inlineSourceMap",
+  "framework": "mocha+chai",
+  "src_files": [
+    "add-on/**/*.ts",
+    "tests/**/*.spec.ts"
+  ],
+  "serve_files": [
+    "./node_modules/sinon-chrome/bundle/sinon-chrome-apps.min.js",
+    "add-on/**/*.js",
+    "!add-on/background/index.js",
+    "!add-on/content_scripts/index.js",
+    "!add-on/popup/popup.js",
+    "tests/**/*.spec.js"
+  ]
+}
