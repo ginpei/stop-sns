@@ -50,13 +50,7 @@ class Status {
 
   public async init () {
     browser.storage.onChanged.addListener((changes, areaName) => {
-      if (changes.running) {
-        this._running = changes.running.newValue;
-      }
-      if (changes.startedBreakingAt) {
-        this._startedBreakingAt = changes.startedBreakingAt.newValue;
-      }
-      this.runOnChangeCallbacks(changes, areaName);
+      this.onStorageChanged(changes, areaName);
     });
 
     const values =  await this.readStorage();
@@ -100,6 +94,16 @@ class Status {
 
   public onChange (callback: (data: any) => void) {
     this.onChangeCallbacks.push(callback);
+  }
+
+  protected onStorageChanged (changes: browser.storage.ChangeDict, areaName: string) {
+    if (changes.running) {
+      this._running = changes.running.newValue;
+    }
+    if (changes.startedBreakingAt) {
+      this._startedBreakingAt = changes.startedBreakingAt.newValue;
+    }
+    // this.runOnChangeCallbacks(changes, areaName);
   }
 
   protected runOnChangeCallbacks (changes: any, areaName: string) {
