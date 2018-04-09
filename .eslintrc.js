@@ -2,7 +2,9 @@ module.exports = {
   root: true,
   env: {
     browser: true,
+    webextensions: true,
   },
+  parser: 'typescript-eslint-parser',
   parserOptions: {
     ecmaVersion: 6,
     sourceType: 'module',
@@ -22,6 +24,10 @@ module.exports = {
       ],
     }],
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-unused-vars': [ 'error', {
+      argsIgnorePattern: '^(_|event)$',
+    }],
     'space-before-function-paren': ['error', 'always'],
+    'strict': ['error', 'global'],
   },
 }

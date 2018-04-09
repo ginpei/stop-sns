@@ -3,17 +3,45 @@
   "name": "Stop SNS",
   "version": "1.0",
   "description": "Help you to spend time on SNS.",
+  "author": "Ginpei Takanashi",
   "icons": {
-    "48": "icon-512.png"
+    "48": "icons/icon-48.png",
+    "1000": "icons/icon-1000.png"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "background": {
+    "scripts": [
+      "lib/chrome-supports.js",
+      "lib/Status.js",
+      "background/Timer.js",
+      "background/index.js"
+    ],
+    "persistent": false
   },
   "content_scripts": [
     {
       "matches": [
-        "https://twitter.com/*"
+        "https://twitter.com/*",
+        "https://*.twitter.com/*",
+        "https://*.facebook.com/*"
       ],
+      "run_at": "document_end",
       "js": [
-        "index.js"
+        "lib/chrome-supports.js",
+        "lib/Status.js",
+        "content_scripts/SnsBarrier.js",
+        "content_scripts/index.js"
+      ],
+      "css": [
+        "content_scripts/main.css"
       ]
     }
-  ]
+  ],
+  "browser_action": {
+    "default_icon": "icons/icon-48.png",
+    "default_title": "Stop SNS",
+    "default_popup": "popup/popup.html"
+  }
 }

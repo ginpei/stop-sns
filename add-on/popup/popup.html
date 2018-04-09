@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Stop SNS</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <h1>Stop SNS</h1>
+  <button id="toggle" class="bigSwitch" data-bigSwitch-toggle="off">
+    <span class="bigSwitch-on">
+      <span class="bigSwitch-icon">🏃‍</span>
+      <span class="bigSwitch-message">ON</span>
+    </span>
+    <span class="bigSwitch-off">
+      <span class="bigSwitch-icon">☕️</span>
+      <span class="bigSwitch-message">OFF</span>
+    </span>
+  </button>
+  <script src="../lib/chrome-supports.js"></script>
+  <script src="../lib/Status.js"></script>
+  <script src="PopupController.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

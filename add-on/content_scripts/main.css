@@ -1,0 +1,38 @@
+#stopSns {
+  align-items: center;
+  background-color: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1010;
+}
+
+#stopSns .stopSns-content {
+  text-align: center;
+}
+
+#stopSns .stopSns-message {
+  color: #c00;
+  font-size: 300px;
+  line-height: 1;
+  margin: 0 0 30px;
+  text-shadow:
+     1px  1px 0 rgba(255,255,255,0.7),
+     1px -1px 0 rgba(255,255,255,0.7),
+    -1px -1px 0 rgba(255,255,255,0.7),
+    -1px  1px 0 rgba(255,255,255,0.7),
+    0 0 10px #000;
+}
+
+#stopSns .stopSns-ok {
+  background-color: #c00;
+  border: 1px solid rgba(255,255,255,0.7);
+  box-shadow: 0 0 10px #000;
+  color: #fff;
+  font-size: 20px;
+  padding: 1em;
+}

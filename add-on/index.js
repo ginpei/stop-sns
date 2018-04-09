@@ -1,1 +1,0 @@
-document.title = 'Hello World!';
