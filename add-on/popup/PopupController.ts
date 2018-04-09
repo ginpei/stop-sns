@@ -6,21 +6,6 @@ enum PopupToggle {
 class PopupController {
   public elToggle: HTMLElement;
 
-  // set running (running: boolean) {
-  //   if (running === this._running) {
-  //     return;
-  //   }
-
-  //   if (running) {
-  //     this.elToggle.setAttribute("data-bigSwitch-toggle", PopupToggle.on);
-  //     this.status.start();
-  //   } else {
-  //     this.elToggle.setAttribute("data-bigSwitch-toggle", PopupToggle.off);
-  //     this.status.stop();
-  //   }
-
-  // }
-
   constructor (public status: Status) {
     const elToggle = document.querySelector("#toggle");
     if (!(elToggle instanceof HTMLElement)) {
