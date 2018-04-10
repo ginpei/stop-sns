@@ -24,18 +24,6 @@ class Timer {
     return sec > 0 ? sec.toString() : "🛇";
   }
 
-  // TODO remove because not used
-  private get remainMinuteText () {
-    if (!this.running) {
-      return "";
-    }
-
-    const sec = (Date.now() - this.startedAt) / 1000;
-    const min = sec / 60;
-    const sMin = Math.floor(min).toString();
-    return sMin;
-  }
-
   constructor (private readonly status: Status) {
   }
 
