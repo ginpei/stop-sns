@@ -103,7 +103,7 @@ class Status {
     if (changes.startedBreakingAt) {
       this._startedBreakingAt = changes.startedBreakingAt.newValue;
     }
-    // this.runOnChangeCallbacks(changes, areaName);
+    this.runOnChangeCallbacks(changes, areaName);
   }
 
   protected runOnChangeCallbacks (changes: any, areaName: string) {
