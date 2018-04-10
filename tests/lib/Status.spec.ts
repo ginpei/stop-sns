@@ -47,17 +47,28 @@ describe("Status", () => {
     });
   });
 
-  describe("get breakingTime()", () => {
-    it("returns elapsed time in ms", () => {
-      const clock = sinon.useFakeTimers(new Date("2000-01-01 12:34:56"));
-      status._test_setProps({ startedBreakingAt: Date.now() });
-      clock.tick(10000);
-      expect(status.breakingTime).to.eql(10000);
+  describe("get remainingBreakTime()", () => {
+    before(() => {
+      expect(status.breakTimeLength).to.eql(30000);
     });
 
-    it("returns -1 if not breaking", () => {
+    it("returns remaining time in ms", () => {
+      const clock = sinon.useFakeTimers(new Date("2000-01-01 12:34:56"));
+      status.startBraking();
+      clock.tick(10000);
+      expect(status.remainingBreakTime).to.eql(20000);
+    });
+
+    it("returns even negative numbers", () => {
+      const clock = sinon.useFakeTimers(new Date("2000-01-01 12:34:56"));
+      status.startBraking();
+      clock.tick(40000);
+      expect(status.remainingBreakTime).to.eql(-10000);
+    });
+
+    it("returns 0 if not breaking", () => {
       status._test_setProps({ startedBreakingAt: 0 });
-      expect(status.breakingTime).to.eql(-1);
+      expect(status.remainingBreakTime).to.eql(0);
     });
   });
 
@@ -79,12 +90,19 @@ describe("Status", () => {
 
   describe("stop()", () => {
     beforeEach(() => {
-      status._test_setProps({ running: true });
+      status.start();
+      status.startBraking();
+      const spy = status._spy_save as sinon.SinonSpy;
+      spy.resetHistory();
       status.stop();
     });
 
     it("starts running", () => {
       expect(status.running).to.eql(false);
+    });
+
+    it("resets breaking time", () => {
+      expect(status.startedBreakingAt).to.eql(0);
     });
 
     it("calls save()", () => {

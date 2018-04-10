@@ -28,6 +28,15 @@ class Status {
     return this._startedBreakingAt;
   }
 
+  protected _breakTimeLength = 30000;  // 30 sec
+  /**
+   * How long you can take a break time.
+   * (milliseconds)
+   */
+  get breakTimeLength () {
+    return this._breakTimeLength;
+  }
+
   public get breaking () {
     return this._startedBreakingAt !== 0;
   }
@@ -42,10 +51,15 @@ class Status {
   private onChangeCallbacks: Array<(data: any) => void> = [];
 
   /**
-   * In milliseconds.
+   * (milliseconds)
    */
-  get breakingTime () {
-    return this.breaking ? Date.now() - this._startedBreakingAt : -1;
+  public get remainingBreakTime () {
+    if (this.breaking) {
+      const elapsed = Date.now() - this._startedBreakingAt;
+      return this._breakTimeLength - elapsed;
+    } else {
+      return 0;
+    }
   }
 
   public async init () {
@@ -73,6 +87,7 @@ class Status {
    */
   public stop () {
     this._running = false;
+    this._startedBreakingAt = 0;
     this.save();
   }
 

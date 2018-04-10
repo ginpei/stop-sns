@@ -6,6 +6,25 @@ class Timer {
     return !!this.startedAt;
   }
 
+  /**
+   * - not running: `""`
+   * - running but not breaking: `"🛇"`
+   * - running and breaking: remaining time in sec ceiled
+   * - after finishing break: `"🛇"`
+   */
+  public get badgeText () {
+    if (!this.status.running) {
+      return "";
+    } else if (!this.status.breaking) {
+      return "🛇";
+    }
+
+    const msec = this.status.remainingBreakTime;
+    const sec = Math.ceil(msec / 1000);
+    return sec > 0 ? sec.toString() : "🛇";
+  }
+
+  // TODO remove because not used
   private get remainMinuteText () {
     if (!this.running) {
       return "";
@@ -21,10 +40,9 @@ class Timer {
   }
 
   public async start () {
-    // TODO implement timers
-    // this.tmInterval = setInterval(() => {
-    //   this.updateBadge();
-    // }, 100);
+    this.tmInterval = setInterval(() => {
+      this.updateBadge();
+    }, 100);
 
     this.status.onChange((changes: any) => {
       this.updateBadge();
@@ -37,7 +55,7 @@ class Timer {
 
   private updateBadge () {
     browser.browserAction.setBadgeText({
-      text: this.status.running ? "🛇" : "",
+      text: this.badgeText,
     });
   }
 }
