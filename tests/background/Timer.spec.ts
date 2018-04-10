@@ -24,7 +24,7 @@ describe("Status", () => {
     it("returns current remaining break time ceiled if breaking", () => {
       const clock = sinon.useFakeTimers(new Date("2000-01-01 12:34:56"));
       status.start();
-      status.startBraking();
+      status.startBreaking();
       clock.tick(29999);
       expect(timer.badgeText).to.eql("1");
     });
@@ -32,7 +32,7 @@ describe("Status", () => {
     it("returns stop mark after finishing a break", () => {
       const clock = sinon.useFakeTimers(new Date("2000-01-01 12:34:56"));
       status.start();
-      status.startBraking();
+      status.startBreaking();
       clock.tick(30000);
       expect(timer.badgeText).to.eql("🛇");
     });

@@ -35,7 +35,7 @@ class SnsBarrier {
   }
 
   public startBreaking () {
-    this.status.startBraking();
+    this.status.startBreaking();
 
     // TODO replace with event system
     const interval = this.status.breakTimeLength;

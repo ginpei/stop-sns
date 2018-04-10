@@ -94,7 +94,7 @@ class Status {
   /**
    * Have a break.
    */
-  public startBraking () {
+  public startBreaking () {
     this._startedBreakingAt = Date.now();
     this.save();
   }
@@ -102,7 +102,7 @@ class Status {
   /**
    * End the break.
    */
-  public stopBraking () {
+  public stopBreaking () {
     this._startedBreakingAt = 0;
     this.save();
   }

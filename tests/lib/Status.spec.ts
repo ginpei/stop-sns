@@ -54,14 +54,14 @@ describe("Status", () => {
 
     it("returns remaining time in ms", () => {
       const clock = sinon.useFakeTimers(new Date("2000-01-01 12:34:56"));
-      status.startBraking();
+      status.startBreaking();
       clock.tick(10000);
       expect(status.remainingBreakTime).to.eql(20000);
     });
 
     it("returns even negative numbers", () => {
       const clock = sinon.useFakeTimers(new Date("2000-01-01 12:34:56"));
-      status.startBraking();
+      status.startBreaking();
       clock.tick(40000);
       expect(status.remainingBreakTime).to.eql(-10000);
     });
@@ -91,7 +91,7 @@ describe("Status", () => {
   describe("stop()", () => {
     beforeEach(() => {
       status.start();
-      status.startBraking();
+      status.startBreaking();
       const spy = status._spy_save as sinon.SinonSpy;
       spy.resetHistory();
       status.stop();
@@ -111,12 +111,11 @@ describe("Status", () => {
     });
   });
 
-  // TODO fix typo
   describe("startBreaking()", () => {
     beforeEach(() => {
       sinon.useFakeTimers(new Date("2000-01-01 12:34:56"));
       status._test_setProps({ startedBreakingAt: true });
-      status.startBraking();
+      status.startBreaking();
     });
 
     it("remembers current date time", () => {
@@ -130,12 +129,11 @@ describe("Status", () => {
     });
   });
 
-  // TODO fix typo
   describe("stopBreaking()", () => {
     beforeEach(() => {
       const now = new Date("2000-01-01 12:34:56");
       status._test_setProps({ startedBreakingAt: now.getTime() });
-      status.stopBraking();
+      status.stopBreaking();
     });
 
     it("resets date time", () => {
