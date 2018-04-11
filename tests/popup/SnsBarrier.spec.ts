@@ -10,11 +10,9 @@ describe("SnsBarrier", () => {
 
   describe("startBreaking()", () => {
     it("shows barrier again specified break time later", () => {
-      sinon.spy(barrier, "show");
-      const clock = sinon.useFakeTimers(new Date("2000-01-01 12:34:56"));
+      sinon.spy(status, "startBreaking");
       barrier.startBreaking();
-      clock.tick(status.breakTimeLength);
-      expect(barrier.show).to.have.been.callCount(1);
+      expect(status.startBreaking).to.have.been.callCount(1);
     });
   });
 });

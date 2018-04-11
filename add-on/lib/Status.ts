@@ -18,6 +18,8 @@ interface IStatusSaveData {
  * console.log(status.running); // => false
  */
 class Status {
+  protected tmStopBreaking = 0;
+
   protected _running = false;
   get running () {
     return this._running;
@@ -97,6 +99,11 @@ class Status {
   public startBreaking () {
     this._startedBreakingAt = Date.now();
     this.save();
+
+    const interval = this.breakTimeLength;
+    this.tmStopBreaking = setTimeout(() => {
+      this.stopBreaking();
+    }, interval);
   }
 
   /**
@@ -105,6 +112,8 @@ class Status {
   public stopBreaking () {
     this._startedBreakingAt = 0;
     this.save();
+
+    clearTimeout(this.tmStopBreaking);
   }
 
   public onChange (callback: (data: any) => void) {

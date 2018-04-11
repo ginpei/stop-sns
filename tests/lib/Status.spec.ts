@@ -59,13 +59,6 @@ describe("Status", () => {
       expect(status.remainingBreakTime).to.eql(20000);
     });
 
-    it("returns even negative numbers", () => {
-      const clock = sinon.useFakeTimers(new Date("2000-01-01 12:34:56"));
-      status.startBreaking();
-      clock.tick(40000);
-      expect(status.remainingBreakTime).to.eql(-10000);
-    });
-
     it("returns 0 if not breaking", () => {
       status._test_setProps({ startedBreakingAt: 0 });
       expect(status.remainingBreakTime).to.eql(0);
@@ -112,8 +105,10 @@ describe("Status", () => {
   });
 
   describe("startBreaking()", () => {
+    let clock: sinon.SinonFakeTimers;
+
     beforeEach(() => {
-      sinon.useFakeTimers(new Date("2000-01-01 12:34:56"));
+      clock = sinon.useFakeTimers(new Date("2000-01-01 12:34:56"));
       status._test_setProps({ startedBreakingAt: true });
       status.startBreaking();
     });
@@ -126,6 +121,11 @@ describe("Status", () => {
     it("calls save()", () => {
       const spy = status._spy_save as sinon.SinonSpy;
       expect(spy).to.have.been.callCount(1);
+    });
+
+    it("stops breaking after specified time length", () => {
+      clock.tick(30000);
+      expect(status.breaking).to.eql(false);
     });
   });
 
