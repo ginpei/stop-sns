@@ -1,3 +1,5 @@
+// TODO split status and settings
+
 interface IStatusSaveData {
   breakTimeLength: number;
   running: boolean;
@@ -21,6 +23,15 @@ interface IStatusSaveData {
  */
 class Status {
   protected tmStopBreaking = 0;
+  protected originalValues: IStatusSaveData | null = null;
+
+  protected _modified = false;
+  /**
+   * If some values are changed from the beginning.
+   */
+  get modified () {
+    return this._modified;
+  }
 
   protected _running = false;
   get running () {
@@ -74,6 +85,7 @@ class Status {
     });
 
     const values =  await this.readStorage();
+    this.originalValues = Object.freeze(values);
     this._breakTimeLength = values.breakTimeLength;
     this._running = values.running;
     this._startedBreakingAt = values.startedBreakingAt;
@@ -145,6 +157,15 @@ class Status {
     await browser.storage.local.set(defaultData as any);
   }
 
+  public async revert () {
+    // TODO revert only settings
+    if (!this.originalValues) {
+      throw new Error("Values are not ready.");
+    }
+    await browser.storage.local.set(this.originalValues as any);
+    this._modified = false;
+  }
+
   protected onStorageChanged (changes: browser.storage.ChangeDict, areaName: string) {
     if (changes.breakTimeLength) {
       this._breakTimeLength = changes.breakTimeLength.newValue;
@@ -214,5 +235,6 @@ class Status {
    */
   protected async save () {
     await browser.storage.local.set(this.saveData as { [name: string]: any });
+    this._modified = true;
   }
 }

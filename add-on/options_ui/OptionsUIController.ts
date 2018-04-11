@@ -2,6 +2,7 @@ class OptionsUIController {
   private readonly elRunningRow = document.querySelector("#runningRow")!;
   private readonly elBreakTimeLengthSec = document.querySelector("#breakTimeLength") as HTMLInputElement;
   private readonly elReset = document.querySelector("#reset")!;
+  private readonly elRevert = document.querySelector("#revert") as HTMLButtonElement;
 
   /**
    * (milliseconds)
@@ -29,6 +30,10 @@ class OptionsUIController {
       this.status.reset();
     });
 
+    this.elRevert.addEventListener("click", () => {
+      this.status.revert();
+    });
+
     await this.status.init();
     this.render();
   }
@@ -39,5 +44,7 @@ class OptionsUIController {
 
     const sBreakTimeLengthSec = Math.floor(this.status.breakTimeLength / 1000).toString();
     this.elBreakTimeLengthSec.value = sBreakTimeLengthSec;
+
+    this.elRevert.disabled = !this.status.modified;
   }
 }
