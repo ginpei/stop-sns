@@ -48,7 +48,7 @@ describe("Status", () => {
   });
 
   describe("get remainingBreakTime()", () => {
-    before(() => {
+    it("uses specified time length, which is 30,000", () => {
       expect(status.breakTimeLength).to.eql(30000);
     });
 
