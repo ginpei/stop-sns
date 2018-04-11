@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Stop SNS",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Help you to spend less time on SNS.",
   "author": "Ginpei Takanashi",
   "icons": {

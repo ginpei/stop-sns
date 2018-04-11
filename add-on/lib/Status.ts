@@ -50,7 +50,7 @@ class Status {
       breakTimeLength: this._breakTimeLength,
       running: this._running,
       startedBreakingAt: this._startedBreakingAt,
-      version: "v1.0.1",
+      version: "v1.1.0",
     };
   }
 
@@ -182,7 +182,7 @@ class Status {
 
     if (!obj || !obj.version) {
       // return at the end
-    } else if (obj.version === "v1.0.1") {
+    } else if (obj.version === "v1.1.0") {
       if (typeof obj.breakTimeLength !== "number") {
         throw new TypeError();
       }
