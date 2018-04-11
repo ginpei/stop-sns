@@ -42,7 +42,7 @@ class PopupController {
       this.elToggle.setAttribute("data-bigSwitch-toggle", PopupToggle.off);
     }
 
-    // to force Edge re-render
+    // to force Edge to re-render
     this.elToggle.style.pointerEvents = "none";
     setTimeout(() => this.elToggle.style.pointerEvents = "", 1);
   }
