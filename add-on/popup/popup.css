@@ -15,3 +15,9 @@
 .bigSwitch:not([data-bigSwitch-toggle="on"]) .bigSwitch-off {
   display: block;
 }
+.bigSwitch .bigSwitch-nextStatus {
+  display: none;
+}
+.bigSwitch:hover .bigSwitch-nextStatus {
+  display: inline;
+}
