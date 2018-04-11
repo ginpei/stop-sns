@@ -23,6 +23,14 @@ class PopupController {
       this.toggle();
     });
 
+    const elOpenOptionsPage = document.querySelector("#openOptionsPage");
+    if (!elOpenOptionsPage) {
+      throw new TypeError();
+    }
+    elOpenOptionsPage.addEventListener("click", () => {
+      browser.runtime.openOptionsPage();
+    });
+
     await this.status.init();
     this.update();
   }

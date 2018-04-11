@@ -1,5 +1,33 @@
-.bigSwitch {
+button {
   cursor: pointer;
+}
+
+.header {
+  --header-height: 30px;
+
+  display: grid;
+  grid-template-areas: "left right";
+  margin-bottom: 10px;
+}
+.header-logoGrid {
+  grid-area: left;
+  text-align: left;
+}
+.header-logo {
+  font-size: var(--header-height);
+  margin: 0;
+}
+.header-optionsGrid {
+  grid-area: right;
+  text-align: right;
+}
+.header-optionItem {
+  height: var(--header-height);
+  padding: 0;
+  width: var(--header-height);
+}
+
+.bigSwitch {
   height: 200px;
   width: 200px;
 }

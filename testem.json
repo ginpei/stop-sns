@@ -13,6 +13,7 @@
     "!add-on/background/index.js",
     "!add-on/content_scripts/index.js",
     "!add-on/popup/popup.js",
+    "!add-on/options_ui/main.js",
     "tests/**/*.spec.js"
   ]
 }

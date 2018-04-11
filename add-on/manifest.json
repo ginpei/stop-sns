@@ -43,5 +43,8 @@
     "default_icon": "icons/icon-48.png",
     "default_title": "Stop SNS",
     "default_popup": "popup/popup.html"
+  },
+  "options_ui": {
+    "page": "options_ui/index.html"
   }
 }
