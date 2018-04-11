@@ -1,11 +1,19 @@
-body {
+html {
   font-size: 16px;
+}
+body {
+  font-size: 1rem;
 }
 
 .settingsTable {
   border: 1px solid #ddd;
   border-collapse: collapse;
+  margin-bottom: 1rem;
   width: 100%;
+}
+.settingsTable caption {
+  font-weight: bold;
+  padding: 0.4em 1em;
 }
 .settingsTable th,
 .settingsTable td {
@@ -13,7 +21,9 @@ body {
   padding: 0.4em 1em;;
 }
 .settingsTable th {
-  text-align: right;
+  font-weight: normal;
+  text-align: initial;
+  width: 30%;
 }
 
 #runningRow .on,
