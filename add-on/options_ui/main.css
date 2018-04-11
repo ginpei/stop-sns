@@ -23,6 +23,7 @@ body {
 .settingsTable th {
   font-weight: normal;
   text-align: initial;
+  vertical-align: top;
   width: 30%;
 }
 .settingsTable textarea {
