@@ -25,6 +25,9 @@ body {
   text-align: initial;
   width: 30%;
 }
+.settingsTable textarea {
+  width: 100%;
+}
 
 #runningRow .on,
 #runningRow .off {
@@ -33,4 +36,8 @@ body {
 #runningRow[data-running="true"] .on,
 #runningRow[data-running="false"] .off {
   display: inline;
+}
+
+#matches {
+  height: 8em;
 }

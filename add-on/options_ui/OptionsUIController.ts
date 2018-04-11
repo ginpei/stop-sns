@@ -1,6 +1,7 @@
 class OptionsUIController {
   private readonly elRunningRow = document.querySelector("#runningRow")!;
   private readonly elBreakTimeLengthSec = document.querySelector("#breakTimeLength") as HTMLInputElement;
+  private readonly elMatches = document.querySelector("#matches") as HTMLTextAreaElement;
   private readonly elReset = document.querySelector("#reset")!;
   private readonly elRevert = document.querySelector("#revert") as HTMLButtonElement;
 
@@ -26,6 +27,10 @@ class OptionsUIController {
       }
     });
 
+    this.elMatches.addEventListener("input", () => {
+      this.status.setMatches(this.elMatches.value.split("\n"));
+    });
+
     this.elReset.addEventListener("click", () => {
       this.status.reset();
     });
@@ -44,6 +49,8 @@ class OptionsUIController {
 
     const sBreakTimeLengthSec = Math.floor(this.status.breakTimeLength / 1000).toString();
     this.elBreakTimeLengthSec.value = sBreakTimeLengthSec;
+
+    this.elMatches.value = this.status.matchesText;
 
     this.elRevert.disabled = !this.status.modified;
   }

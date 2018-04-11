@@ -12,6 +12,9 @@ describe("Status", () => {
     }
 
     public _test_setProps (values: any) {
+      if (values.matches instanceof Array) {
+        this._matches = values.matches;
+      }
       if (typeof values.running === "boolean") {
         this._running = values.running;
       }
@@ -30,8 +33,22 @@ describe("Status", () => {
   beforeEach(async () => {
     status = new TestableStatus();
     status._test_setProps({
+      matches: [
+        "https://twitter.com/*",
+        "https://*.twitter.com/*",
+        "https://*.facebook.com/*",
+      ],
       running: false,
       startedBreakingAt: 0,
+    });
+  });
+
+  describe("get filtersText()", () => {
+    it("returns all items joined by line breaks", () => {
+      status._test_setProps({
+        matches: ["a", "b", "c"],
+      });
+      expect(status.matchesText).to.eql("a\nb\nc");
     });
   });
 

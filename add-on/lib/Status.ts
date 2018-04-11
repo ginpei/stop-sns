@@ -2,6 +2,7 @@
 
 interface IStatusSaveData {
   breakTimeLength: number;
+  matches: string[];
   running: boolean;
   startedBreakingAt: number;
   version?: string;
@@ -38,6 +39,8 @@ class Status {
     return this._running;
   }
 
+  protected _matches: string[] = [];
+
   protected _startedBreakingAt = 0;
   get startedBreakingAt () {
     return this._startedBreakingAt;
@@ -52,6 +55,10 @@ class Status {
     return this._breakTimeLength;
   }
 
+  public get matchesText () {
+    return this._matches.join("\n");
+  }
+
   public get breaking () {
     return this._startedBreakingAt !== 0;
   }
@@ -59,6 +66,7 @@ class Status {
   private get saveData (): IStatusSaveData {
     return {
       breakTimeLength: this._breakTimeLength,
+      matches: this._matches,
       running: this._running,
       startedBreakingAt: this._startedBreakingAt,
       version: "v1.1.0",
@@ -87,6 +95,7 @@ class Status {
     const values =  await this.readStorage();
     this.originalValues = Object.freeze(values);
     this._breakTimeLength = values.breakTimeLength;
+    this._matches = values.matches;
     this._running = values.running;
     this._startedBreakingAt = values.startedBreakingAt;
 
@@ -149,6 +158,11 @@ class Status {
     this.save();
   }
 
+  public setMatches (matches: string[]) {
+    this._matches = matches;
+    this.save();
+  }
+
   public async reset () {
     // stop timer, which is not stored in storage
     this.stopBreaking();
@@ -189,6 +203,7 @@ class Status {
   protected async readStorage (): Promise<IStatusSaveData> {
     const keys = [
       "breakTimeLength",
+      "matches",
       "running",
       "startedBreakingAt",
       "version",
@@ -207,6 +222,9 @@ class Status {
       if (typeof obj.breakTimeLength !== "number") {
         throw new TypeError();
       }
+      if (!(obj.matches instanceof Array) || obj.matches.some((v) => typeof v !== "string")) {
+        throw new TypeError();
+      }
       if (typeof obj.running !== "boolean") {
         throw new TypeError();
       }
@@ -216,14 +234,21 @@ class Status {
 
       return {
         breakTimeLength: obj.breakTimeLength,
+        matches: obj.matches as string[],
         running: obj.running,
         startedBreakingAt: obj.startedBreakingAt,
       };
     }
 
     // default values
+    // TODO extract these default values
     return {
       breakTimeLength: 30000,
+      matches: [
+        "https://twitter.com/*",
+        "https://*.twitter.com/*",
+        "https://*.facebook.com/*",
+      ],
       running: false,
       startedBreakingAt: 0,
     };
