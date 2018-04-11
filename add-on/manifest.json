@@ -16,7 +16,7 @@
       "lib/chrome-supports.js",
       "lib/Status.js",
       "background/Timer.js",
-      "background/index.js"
+      "background/main.js"
     ],
     "persistent": false
   },
@@ -32,7 +32,7 @@
         "lib/chrome-supports.js",
         "lib/Status.js",
         "content_scripts/SnsBarrier.js",
-        "content_scripts/index.js"
+        "content_scripts/main.js"
       ],
       "css": [
         "content_scripts/main.css"
@@ -42,7 +42,7 @@
   "browser_action": {
     "default_icon": "icons/icon-48.png",
     "default_title": "Stop SNS",
-    "default_popup": "popup/popup.html"
+    "default_popup": "popup/index.html"
   },
   "options_ui": {
     "page": "options_ui/index.html"
