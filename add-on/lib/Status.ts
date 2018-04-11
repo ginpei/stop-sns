@@ -138,7 +138,7 @@ class Status {
   }
 
   public async reset () {
-    // stop timer
+    // stop timer, which is not stored in storage
     this.stopBreaking();
 
     const defaultData = this.convertStorageObjectToStatusSaveData(null);
