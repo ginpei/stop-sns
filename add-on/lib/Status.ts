@@ -137,6 +137,14 @@ class Status {
     this.save();
   }
 
+  public async reset () {
+    // stop timer
+    this.stopBreaking();
+
+    const defaultData = this.convertStorageObjectToStatusSaveData(null);
+    await browser.storage.local.set(defaultData as any);
+  }
+
   protected onStorageChanged (changes: browser.storage.ChangeDict, areaName: string) {
     if (changes.breakTimeLength) {
       this._breakTimeLength = changes.breakTimeLength.newValue;
@@ -170,7 +178,7 @@ class Status {
   }
 
   protected convertStorageObjectToStatusSaveData
-    (obj: browser.storage.StorageObject): IStatusSaveData {
+    (obj: browser.storage.StorageObject | null): IStatusSaveData {
 
     if (!obj || !obj.version) {
       // return at the end

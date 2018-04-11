@@ -1,6 +1,7 @@
 (async () => {
   const elRunningRow = document.querySelector("#runningRow");
   const elBreakTimeLengthSec = document.querySelector("#breakTimeLength") as HTMLInputElement | null;
+  const elReset = document.querySelector("#reset");
 
   const status = new Status();
   const values = await status.init();
@@ -29,6 +30,13 @@
     if (length > 0) {
       status.setBreakTimeLength(length);
     }
+  });
+
+  if (!elReset) {
+    throw new Error();
+  }
+  elReset.addEventListener("click", () => {
+    status.reset();
   });
 
   update();
