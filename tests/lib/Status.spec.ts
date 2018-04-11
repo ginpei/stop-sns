@@ -145,4 +145,15 @@ describe("Status", () => {
       expect(spy).to.have.been.callCount(1);
     });
   });
+
+  describe("setBreakTimeLength", () => {
+    it("sets value", () => {
+      status.setBreakTimeLength(10000);
+      expect(status.breakTimeLength).to.eql(10000);
+    });
+
+    it("throws if negative value", () => {
+      expect(() => status.setBreakTimeLength(-1)).to.throw();
+    });
+  });
 });

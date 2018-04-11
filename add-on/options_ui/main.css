@@ -1,0 +1,26 @@
+body {
+  font-size: 16px;
+}
+
+.settingsTable {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  width: 100%;
+}
+.settingsTable th,
+.settingsTable td {
+  border: 1px solid #ddd;
+  padding: 0.4em 1em;;
+}
+.settingsTable th {
+  text-align: right;
+}
+
+#runningRow .on,
+#runningRow .off {
+  display: none;
+}
+#runningRow[data-running="true"] .on,
+#runningRow[data-running="false"] .off {
+  display: inline;
+}

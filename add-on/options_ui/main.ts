@@ -1,17 +1,34 @@
 (async () => {
+  const elRunningRow = document.querySelector("#runningRow");
+  const elBreakTimeLengthSec = document.querySelector("#breakTimeLength") as HTMLInputElement | null;
+
   const status = new Status();
-  await status.init();
+  const values = await status.init();
 
   function update () {
-    const elRunning = document.querySelector("#running");
-    if (!elRunning) {
+    if (!elRunningRow) {
       throw new Error();
     }
-    elRunning.textContent = status.running ? "Running" : "Resting :)";
+    elRunningRow.setAttribute("data-running", status.running.toString());
+
+    if (!elBreakTimeLengthSec) {
+      throw new Error();
+    }
+    elBreakTimeLengthSec.value = Math.floor(status.breakTimeLength / 1000).toString();
   }
 
   status.onChange(() => {
     update();
+  });
+
+  if (!elBreakTimeLengthSec) {
+    throw new Error();
+  }
+  elBreakTimeLengthSec.addEventListener("input", () => {
+    const length = Number(elBreakTimeLengthSec.value) * 1000;
+    if (length > 0) {
+      status.setBreakTimeLength(length);
+    }
   });
 
   update();

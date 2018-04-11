@@ -1,6 +1,8 @@
 interface IStatusSaveData {
+  breakTimeLength: number;
   running: boolean;
   startedBreakingAt: number;
+  version?: string;
 }
 
 /**
@@ -45,8 +47,10 @@ class Status {
 
   private get saveData (): IStatusSaveData {
     return {
+      breakTimeLength: this._breakTimeLength,
       running: this._running,
       startedBreakingAt: this._startedBreakingAt,
+      version: "v1.0.1",
     };
   }
 
@@ -70,6 +74,7 @@ class Status {
     });
 
     const values =  await this.readStorage();
+    this._breakTimeLength = values.breakTimeLength;
     this._running = values.running;
     this._startedBreakingAt = values.startedBreakingAt;
 
@@ -120,7 +125,22 @@ class Status {
     this.onChangeCallbacks.push(callback);
   }
 
+  /**
+   * @param length (milliseconds)
+   */
+  public setBreakTimeLength (length: number) {
+    if (length < 0) {
+      throw new RangeError();
+    }
+
+    this._breakTimeLength = length;
+    this.save();
+  }
+
   protected onStorageChanged (changes: browser.storage.ChangeDict, areaName: string) {
+    if (changes.breakTimeLength) {
+      this._breakTimeLength = changes.breakTimeLength.newValue;
+    }
     if (changes.running) {
       this._running = changes.running.newValue;
     }
@@ -139,8 +159,10 @@ class Status {
    */
   protected async readStorage (): Promise<IStatusSaveData> {
     const keys = [
+      "breakTimeLength",
       "running",
       "startedBreakingAt",
+      "version",
     ];
 
     const result = await browser.storage.local.get(keys);
@@ -150,16 +172,31 @@ class Status {
   protected convertStorageObjectToStatusSaveData
     (obj: browser.storage.StorageObject): IStatusSaveData {
 
-    if (typeof obj.running !== "boolean") {
-      throw new TypeError();
-    }
-    if (typeof obj.startedBreakingAt !== "number") {
-      throw new TypeError();
+    if (!obj || !obj.version) {
+      // return at the end
+    } else if (obj.version === "v1.0.1") {
+      if (typeof obj.breakTimeLength !== "number") {
+        throw new TypeError();
+      }
+      if (typeof obj.running !== "boolean") {
+        throw new TypeError();
+      }
+      if (typeof obj.startedBreakingAt !== "number") {
+        throw new TypeError();
+      }
+
+      return {
+        breakTimeLength: obj.breakTimeLength,
+        running: obj.running,
+        startedBreakingAt: obj.startedBreakingAt,
+      };
     }
 
+    // default values
     return {
-      running: obj.running,
-      startedBreakingAt: obj.startedBreakingAt,
+      breakTimeLength: 30000,
+      running: false,
+      startedBreakingAt: 0,
     };
   }
 
