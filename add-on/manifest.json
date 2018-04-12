@@ -13,7 +13,7 @@
   ],
   "background": {
     "scripts": [
-      "lib/api-pollifil.js",
+      "lib/api-polyfill.js",
       "lib/Status.js",
       "background/Timer.js",
       "background/main.js"
@@ -29,7 +29,7 @@
       ],
       "run_at": "document_end",
       "js": [
-        "lib/api-pollifil.js",
+        "lib/api-polyfill.js",
         "lib/Status.js",
         "content_scripts/SnsBarrier.js",
         "content_scripts/main.js"
