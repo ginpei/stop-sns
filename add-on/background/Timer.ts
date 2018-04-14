@@ -9,7 +9,8 @@ class Timer {
   /**
    * - not running: `""`
    * - running but not breaking: `"🛇"`
-   * - running and breaking: remaining time in sec ceiled
+   * - running and breaking: remaining time in sec if remaining time is less than 1 min
+   * - running and breaking: remaining time in min if remaining time is not less than 1 min
    * - after finishing break: `"🛇"`
    */
   public get badgeText () {
@@ -20,8 +21,12 @@ class Timer {
     }
 
     const msec = this.status.remainingBreakTime;
+    if (msec <= 0) {
+      return "🛇";
+    }
+
     const sec = Math.ceil(msec / 1000);
-    return sec > 0 ? sec.toString() : "🛇";
+    return sec > 60 ? Math.ceil(sec / 60).toString() : `.${Math.ceil(sec)}`;
   }
 
   constructor (private readonly status: Status) {

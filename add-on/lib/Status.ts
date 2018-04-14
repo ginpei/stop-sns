@@ -46,7 +46,7 @@ class Status {
     return this._startedBreakingAt;
   }
 
-  protected _breakTimeLength = 30000;  // 30 sec
+  protected _breakTimeLength = 60000;  // 1 min
   /**
    * How long you can take a break time.
    * (milliseconds)
@@ -251,7 +251,7 @@ class Status {
     // default values
     // TODO extract these default values
     return {
-      breakTimeLength: 30000,
+      breakTimeLength: 60000,
       matches: [
         "twitter.com",
         "facebook.com",

@@ -12,6 +12,9 @@ describe("Status", () => {
     }
 
     public _test_setProps (values: any) {
+      if (typeof values.breakTimeLength === "number") {
+        this._breakTimeLength = values.breakTimeLength;
+      }
       if (values.matches instanceof Array) {
         this._matches = values.matches;
       }
@@ -33,10 +36,11 @@ describe("Status", () => {
   beforeEach(async () => {
     status = new TestableStatus();
     status._test_setProps({
-      matches: [
-        "twitter.com",
-        "facebook.com",
-      ],
+      breakTimeLength: 1 * 60 * 1000,
+        matches: [
+          "twitter.com",
+          "facebook.com",
+        ],
       running: false,
       startedBreakingAt: 0,
     });
@@ -64,15 +68,11 @@ describe("Status", () => {
   });
 
   describe("get remainingBreakTime()", () => {
-    it("uses specified time length, which is 30,000", () => {
-      expect(status.breakTimeLength).to.eql(30000);
-    });
-
     it("returns remaining time in ms", () => {
       const clock = sinon.useFakeTimers(new Date("2000-01-01 12:34:56"));
       status.startBreaking();
       clock.tick(10000);
-      expect(status.remainingBreakTime).to.eql(20000);
+      expect(status.remainingBreakTime).to.eql(50000);
     });
 
     it("returns 0 if not breaking", () => {
@@ -140,7 +140,7 @@ describe("Status", () => {
     });
 
     it("stops breaking after specified time length", () => {
-      clock.tick(30000);
+      clock.tick(60000);
       expect(status.breaking).to.eql(false);
     });
   });

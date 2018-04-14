@@ -1,6 +1,6 @@
 class OptionsUIController {
   private readonly elRunningRow = document.querySelector("#runningRow")!;
-  private readonly elBreakTimeLengthSec = document.querySelector("#breakTimeLength") as HTMLInputElement;
+  private readonly elBreakTimeLengthMin = document.querySelector("#breakTimeLength") as HTMLInputElement;
   private readonly elMatches = document.querySelector("#matches") as HTMLTextAreaElement;
   private readonly elReset = document.querySelector("#reset")!;
   private readonly elRevert = document.querySelector("#revert") as HTMLButtonElement;
@@ -9,7 +9,7 @@ class OptionsUIController {
    * (milliseconds)
    */
   get breakTimeLength () {
-    return Number(this.elBreakTimeLengthSec.value) * 1000;
+    return Number(this.elBreakTimeLengthMin.value) * 1000 * 60;
   }
 
   constructor (private readonly status: Status) {
@@ -20,7 +20,7 @@ class OptionsUIController {
       this.render();
     });
 
-    this.elBreakTimeLengthSec.addEventListener("input", () => {
+    this.elBreakTimeLengthMin.addEventListener("input", () => {
       const length = this.breakTimeLength;
       if (length > 0) {
         this.status.setBreakTimeLength(length);
@@ -47,8 +47,8 @@ class OptionsUIController {
     const sRunning = this.status.running.toString();
     this.elRunningRow.setAttribute("data-running", sRunning);
 
-    const sBreakTimeLengthSec = Math.floor(this.status.breakTimeLength / 1000).toString();
-    this.elBreakTimeLengthSec.value = sBreakTimeLengthSec;
+    const sBreakTimeLengthMin = Math.floor(this.status.breakTimeLength / 60 / 1000).toString();
+    this.elBreakTimeLengthMin.value = sBreakTimeLengthMin;
 
     this.elMatches.value = this.status.matchesText;
 
