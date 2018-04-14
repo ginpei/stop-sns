@@ -3,7 +3,7 @@
   const snsBarrier = new SnsBarrier(status);
 
   function toggle () {
-    if (status.running) {
+    if (status.isTargetURL(location.href) && status.running) {
       if (!status.breaking) {
         snsBarrier.show();
       }
@@ -14,7 +14,5 @@
 
   status.onChange(() => toggle());
   await status.init();
-  if (status.isTargetURL(location.href)) {
-    toggle();
-  }
+  toggle();
 })();

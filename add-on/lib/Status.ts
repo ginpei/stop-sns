@@ -189,6 +189,9 @@ class Status {
     if (changes.breakTimeLength) {
       this._breakTimeLength = changes.breakTimeLength.newValue;
     }
+    if (changes.matches) {
+      this._matches = changes.matches.newValue;
+    }
     if (changes.running) {
       this._running = changes.running.newValue;
     }
