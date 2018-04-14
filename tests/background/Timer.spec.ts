@@ -1,4 +1,4 @@
-describe("Status", () => {
+describe("Timer", () => {
   const expect = chai.expect;
 
   let status: Status;
