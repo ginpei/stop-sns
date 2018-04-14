@@ -34,9 +34,8 @@ describe("Status", () => {
     status = new TestableStatus();
     status._test_setProps({
       matches: [
-        "https://twitter.com/*",
-        "https://*.twitter.com/*",
-        "https://*.facebook.com/*",
+        "twitter.com",
+        "facebook.com",
       ],
       running: false,
       startedBreakingAt: 0,
@@ -171,6 +170,55 @@ describe("Status", () => {
 
     it("throws if negative value", () => {
       expect(() => status.setBreakTimeLength(-1)).to.throw();
+    });
+  });
+
+  describe("isTargetURL()", () => {
+    beforeEach(() => {
+      status._test_setProps({
+        matches: [
+          "twitter.com",
+          "",  // make sure it works even if includes empty
+          "facebook.com",
+        ],
+      });
+    });
+
+    it("matches with the hostname", () => {
+      expect(status.isTargetURL("https://twitter.com/")).to.eql(true);
+    });
+
+    it("matches with URLs followed by paths", () => {
+      expect(status.isTargetURL("https://twitter.com/ginpei_jp/lists")).to.eql(true);
+    });
+
+    it("matches with a hostname with sub domain", () => {
+      expect(status.isTargetURL("https://mobile.twitter.com/")).to.eql(true);
+    });
+
+    it("matches with URLs with any protocols", () => {
+      expect(status.isTargetURL("http://twitter.com/")).to.eql(true);
+      expect(status.isTargetURL("ftp://twitter.com/")).to.eql(true);
+    });
+
+    it("matches with URLs with any ports", () => {
+      expect(status.isTargetURL("https://twitter.com:80/")).to.eql(true);
+      expect(status.isTargetURL("https://twitter.com:8080/")).to.eql(true);
+    });
+
+    it("doesn't match with unlisted hostname", () => {
+      expect(status.isTargetURL("https://ginpei.info/")).to.eql(false);
+      expect(status.isTargetURL("http://localhost:7357/6579")).to.eql(false);
+    });
+
+    it("doesn't match if just a part", () => {
+      expect(status.isTargetURL("https://super-twitter.com/")).to.eql(false);
+      expect(status.isTargetURL("https://twitter.com.local/")).to.eql(false);
+      expect(status.isTargetURL("https://twitter.comcomcom.com/")).to.eql(false);
+    });
+
+    it("matches the second one in the list", () => {
+      expect(status.isTargetURL("https://www.facebook.com/")).to.eql(true);
     });
   });
 });

@@ -180,6 +180,11 @@ class Status {
     this._modified = false;
   }
 
+  public isTargetURL (target: string) {
+    const url = new URL(target);
+    return this._matches.some((match) => this.isMatchedUrl(url, match));
+  }
+
   protected onStorageChanged (changes: browser.storage.ChangeDict, areaName: string) {
     if (changes.breakTimeLength) {
       this._breakTimeLength = changes.breakTimeLength.newValue;
@@ -245,9 +250,8 @@ class Status {
     return {
       breakTimeLength: 30000,
       matches: [
-        "https://twitter.com/*",
-        "https://*.twitter.com/*",
-        "https://*.facebook.com/*",
+        "twitter.com",
+        "facebook.com",
       ],
       running: false,
       startedBreakingAt: 0,
@@ -261,5 +265,21 @@ class Status {
   protected async save () {
     await browser.storage.local.set(this.saveData as { [name: string]: any });
     this._modified = true;
+  }
+
+  /**
+   * @param target The given URL.
+   * @param match e.g. `"twitter.com"`
+   */
+  protected isMatchedUrl (target: URL, match: string) {
+    const index = target.hostname.lastIndexOf(match);
+    const expected = target.hostname.length - match.length;
+
+    const found = index >= 0;
+    const atEnd = index === expected;
+    const followingLetter = target.hostname.charAt(expected - 1);
+    const followingSomething = Boolean(followingLetter) && followingLetter !== ".";
+
+    return found && atEnd && !followingSomething;
   }
 }

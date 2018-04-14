@@ -14,5 +14,7 @@
 
   status.onChange(() => toggle());
   await status.init();
-  toggle();
+  if (status.isTargetURL(location.href)) {
+    toggle();
+  }
 })();
