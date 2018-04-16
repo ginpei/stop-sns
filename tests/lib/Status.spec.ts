@@ -92,8 +92,7 @@ describe("Status", () => {
     });
 
     it("calls save()", () => {
-      const spy = status._spy_save as sinon.SinonSpy;
-      expect(spy).to.have.been.callCount(1);
+      expect(status._spy_save).to.have.been.callCount(1);
     });
   });
 
@@ -116,8 +115,7 @@ describe("Status", () => {
     });
 
     it("calls save()", () => {
-      const spy = status._spy_save as sinon.SinonSpy;
-      expect(spy).to.have.been.callCount(1);
+      expect(status._spy_save).to.have.been.callCount(1);
     });
 
     it("kills a timer that stops break time", () => {
@@ -163,8 +161,7 @@ describe("Status", () => {
     });
 
     it("calls save()", () => {
-      const spy = status._spy_save as sinon.SinonSpy;
-      expect(spy).to.have.been.callCount(1);
+      expect(status._spy_save).to.have.been.callCount(1);
     });
   });
 
