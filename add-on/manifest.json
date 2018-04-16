@@ -43,6 +43,7 @@
     "default_popup": "popup/index.html"
   },
   "options_ui": {
-    "page": "options_ui/index.html"
+    "page": "options_ui/index.html",
+    "chrome_style": true
   }
 }
