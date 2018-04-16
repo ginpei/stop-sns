@@ -172,7 +172,7 @@ class Status {
     this.stopBreaking();
 
     const defaultData = this.convertStorageObjectToStatusSaveData(null);
-    await browser.storage.local.set(defaultData as any);
+    await this.save(defaultData);
   }
 
   public async revert () {
@@ -180,7 +180,7 @@ class Status {
     if (!this.originalValues) {
       throw new Error("Values are not ready.");
     }
-    await browser.storage.local.set(this.originalValues as any);
+    await this.save(this.originalValues);
     this._modified = false;
   }
 
@@ -269,8 +269,8 @@ class Status {
    * Save current style.
    * It would emit something.
    */
-  protected async save () {
-    await browser.storage.local.set(this.saveData as { [name: string]: any });
+  protected async save (data: IStatusSaveData = this.saveData) {
+    await browser.storage.local.set(data as { [name: string]: any });
     this._modified = true;
   }
 
