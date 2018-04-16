@@ -116,6 +116,7 @@ class Status {
   public stop () {
     this._running = false;
     this._startedBreakingAt = 0;
+    this.stopBreaking({ silent: true });
     this.save();
   }
 
@@ -127,6 +128,7 @@ class Status {
     this.save();
 
     const interval = this.breakTimeLength;
+    clearTimeout(this.tmStopBreaking);
     this.tmStopBreaking = setTimeout(() => {
       this.stopBreaking();
     }, interval);
@@ -135,9 +137,11 @@ class Status {
   /**
    * End the break.
    */
-  public stopBreaking () {
+  public stopBreaking (options: { silent?: boolean } = {}) {
     this._startedBreakingAt = 0;
-    this.save();
+    if (options.silent !== true) {
+      this.save();
+    }
 
     clearTimeout(this.tmStopBreaking);
   }

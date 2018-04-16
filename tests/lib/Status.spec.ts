@@ -99,6 +99,7 @@ describe("Status", () => {
 
   describe("stop()", () => {
     beforeEach(() => {
+      sinon.spy(status, "stopBreaking");
       status.start();
       status.startBreaking();
       const spy = status._spy_save as sinon.SinonSpy;
@@ -118,14 +119,18 @@ describe("Status", () => {
       const spy = status._spy_save as sinon.SinonSpy;
       expect(spy).to.have.been.callCount(1);
     });
+
+    it("kills a timer that stops break time", () => {
+      expect(status.stopBreaking).to.have.been.callCount(1);
+    });
   });
 
   describe("startBreaking()", () => {
     let clock: sinon.SinonFakeTimers;
 
     beforeEach(() => {
+      sinon.spy(status, "stopBreaking");
       clock = sinon.useFakeTimers(new Date("2000-01-01 12:34:56"));
-      status._test_setProps({ startedBreakingAt: true });
       status.startBreaking();
     });
 
@@ -134,14 +139,15 @@ describe("Status", () => {
       expect(status.startedBreakingAt).to.eql(now.getTime());
     });
 
-    it("calls save()", () => {
-      const spy = status._spy_save as sinon.SinonSpy;
-      expect(spy).to.have.been.callCount(1);
-    });
-
     it("stops breaking after specified time length", () => {
       clock.tick(60000);
       expect(status.breaking).to.eql(false);
+    });
+
+    it("kills an old timer", () => {
+      status.startBreaking();
+      clock.tick(60000);
+      expect(status.stopBreaking).to.have.been.callCount(1);
     });
   });
 
