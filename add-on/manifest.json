@@ -42,6 +42,7 @@
     "default_title": "Stop SNS",
     "default_popup": "popup/index.html"
   },
+  "options_page": "options_ui/index.html",
   "options_ui": {
     "page": "options_ui/index.html",
     "chrome_style": true
