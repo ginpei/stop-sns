@@ -24,4 +24,12 @@ try {
   // pretend Chrome
   // @ts-ignore
   window.browser = undefined;
+
+  // add missing polyfill
+  // @ts-ignore
+  window.chrome.runtime.openOptionsPage = () => {
+    browser.tabs.create({
+      url: "../options_ui/index.html",
+    });
+  };
 }
