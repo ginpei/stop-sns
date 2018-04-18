@@ -28,8 +28,11 @@ try {
   // add missing polyfill
   // @ts-ignore
   window.chrome.runtime.openOptionsPage = () => {
+    const manifest = browser.runtime.getManifest();
+    // @ts-ignore
+    const url = manifest.options_page;
     browser.tabs.create({
-      url: "../options_ui/index.html",
+      url: `/${url}`,
     });
   };
 }
