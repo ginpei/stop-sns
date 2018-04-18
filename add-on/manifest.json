@@ -14,6 +14,7 @@
   "background": {
     "scripts": [
       "lib/api-polyfill.js",
+      "vendor/webextension-polyfill/browser-polyfill.min.js",
       "lib/Status.js",
       "background/Timer.js",
       "background/main.js"
@@ -28,6 +29,7 @@
       "run_at": "document_end",
       "js": [
         "lib/api-polyfill.js",
+        "vendor/webextension-polyfill/browser-polyfill.min.js",
         "lib/Status.js",
         "content_scripts/SnsBarrier.js",
         "content_scripts/main.js"
