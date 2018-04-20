@@ -20,12 +20,8 @@ class OptionsUIController {
       this.render();
     });
 
-    this.elBreakTimeLengthMin.addEventListener("input", () => {
-      const length = this.breakTimeLength;
-      if (length > 0) {
-        this.status.setBreakTimeLength(length);
-      }
-    });
+    this.elBreakTimeLengthMin.addEventListener("input", (event) => this.onBreakTimeLengthMinChange(event));
+    this.elBreakTimeLengthMin.addEventListener("keydown", (event) => this.onBreakTimeLengthMinChange(event));
 
     this.elMatches.addEventListener("input", () => {
       this.status.setMatches(this.elMatches.value.split("\n"));
@@ -41,6 +37,25 @@ class OptionsUIController {
 
     await this.status.init();
     this.render();
+  }
+
+  private onBreakTimeLengthMinChange (event: Event) {
+    // Edge doesn't recognize update when you use up/down keys.
+    // They fixed that but not have shipped.
+    // TODO remove keydown stuff and simplify when shipped
+    // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/14678823/
+    const update = () => {
+      const length = this.breakTimeLength;
+      if (length > 0) {
+        this.status.setBreakTimeLength(length);
+      }
+    };
+
+    if (event.type === "keydown") {
+      setTimeout(update, 1);
+    } else {
+      update();
+    }
   }
 
   private render () {
