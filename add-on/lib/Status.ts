@@ -127,11 +127,7 @@ class Status {
     this._startedBreakingAt = Date.now();
     this.save();
 
-    const interval = this.breakTimeLength;
-    clearTimeout(this.tmStopBreaking);
-    this.tmStopBreaking = setTimeout(() => {
-      this.stopBreaking();
-    }, interval);
+    this.setStopTimer();
   }
 
   /**
@@ -192,6 +188,10 @@ class Status {
   protected onStorageChanged (changes: browser.storage.ChangeDict, areaName: string) {
     if (changes.breakTimeLength) {
       this._breakTimeLength = changes.breakTimeLength.newValue;
+
+      if (this.breaking) {
+        this.setStopTimer();
+      }
     }
     if (changes.matches) {
       this._matches = changes.matches.newValue;
@@ -288,5 +288,14 @@ class Status {
     const followingSomething = Boolean(followingLetter) && followingLetter !== ".";
 
     return found && atEnd && !followingSomething;
+  }
+
+  protected setStopTimer () {
+    clearTimeout(this.tmStopBreaking);
+
+    const interval = Math.max(this.remainingBreakTime, 0);
+    this.tmStopBreaking = setTimeout(() => {
+      this.stopBreaking();
+    }, interval);
   }
 }

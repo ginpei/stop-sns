@@ -20,6 +20,10 @@ describe("Status", () => {
     public save () {
       return super.save();
     }
+
+    public onStorageChanged (changes: browser.storage.ChangeDict, areaName: string) {
+      return super.onStorageChanged(changes, areaName);
+    }
   }
 
   let status: TestableStatus;
@@ -120,6 +124,7 @@ describe("Status", () => {
 
     beforeEach(() => {
       sinon.spy(status, "stopBreaking");
+      status.setBreakTimeLength(2 * 60 * 1000);  // 2 min
       clock = sinon.useFakeTimers(new Date("2000-01-01 12:34:56"));
       status.startBreaking();
     });
@@ -130,14 +135,46 @@ describe("Status", () => {
     });
 
     it("stops breaking after specified time length", () => {
-      clock.tick(60000);
+      clock.tick(2 * 60 * 1000);  // 2 min
       expect(status.breaking).to.eql(false);
     });
 
     it("kills an old timer", () => {
       status.startBreaking();
-      clock.tick(60000);
+      clock.tick(2 * 60 * 1000);  // 2 min
       expect(status.stopBreaking).to.have.been.callCount(1);
+    });
+
+    describe("when break time is changed", () => {
+      beforeEach(() => {
+        const length = 3 * 60 * 1000;  // 3 min
+        status.setBreakTimeLength(length);
+        const changes = { breakTimeLength: { newValue: length } };
+        status.onStorageChanged(changes, "local");
+      });
+
+      it("updates waiting time", () => {
+        clock.tick(3 * 60 * 1000 - 1);  // less than 3 min
+        expect(status.stopBreaking).to.have.been.callCount(0);
+        clock.tick(1);
+        expect(status.stopBreaking).to.have.been.callCount(1);
+      });
+    });
+
+    describe("if break time is shortened enough", () => {
+      beforeEach(() => {
+        const length = 1 * 60 * 1000;  // 1 min
+        clock.tick(length);
+        status.setBreakTimeLength(length);
+        const changes = { breakTimeLength: { newValue: length } };
+        status.onStorageChanged(changes, "local");
+      });
+
+      it("fires immediately", () => {
+        expect(status.stopBreaking).to.have.been.callCount(0);
+        clock.tick(1);
+        expect(status.stopBreaking).to.have.been.callCount(1);
+      });
     });
   });
 
