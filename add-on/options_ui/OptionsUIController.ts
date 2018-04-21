@@ -59,8 +59,7 @@ class OptionsUIController {
   }
 
   private render () {
-    const sRunning = this.status.running.toString();
-    this.elRunningRow.setAttribute("data-running", sRunning);
+    this.elRunningRow.setAttribute("data-status", this.status.text);
 
     const sBreakTimeLengthMin = Math.floor(this.status.breakTimeLength / 60 / 1000).toString();
     this.elBreakTimeLengthMin.value = sBreakTimeLengthMin;

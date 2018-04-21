@@ -33,11 +33,13 @@ body {
 }
 
 #runningRow .on,
-#runningRow .off {
+#runningRow .off,
+#runningRow .break {
   display: none;
 }
-#runningRow[data-running="true"] .on,
-#runningRow[data-running="false"] .off {
+#runningRow[data-status="on"] .on,
+#runningRow[data-status="off"] .off,
+#runningRow[data-status="break"] .break {
   display: inline;
 }
 

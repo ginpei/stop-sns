@@ -1,23 +1,5 @@
-enum CurrentStatus {
-  on = "on",
-  off = "off",
-  breaking = "breaking",
-}
-
 class PopupController {
   public elToggle: HTMLElement;
-
-  get currentStatus () {
-    let status: CurrentStatus;
-    if (this.status.breaking) {
-      status = CurrentStatus.breaking;
-    } else if (this.status.running) {
-      status = CurrentStatus.on;
-    } else {
-      status = CurrentStatus.off;
-    }
-    return status;
-  }
 
   constructor (public status: Status) {
     const elToggle = document.querySelector("#toggle");
@@ -59,7 +41,7 @@ class PopupController {
   }
 
   public update () {
-    this.elToggle.setAttribute("data-bigSwitch-status", this.currentStatus);
+    this.elToggle.setAttribute("data-bigSwitch-status", this.status.text);
 
     // to force Edge to re-render
     this.elToggle.style.pointerEvents = "none";

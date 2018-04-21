@@ -33,7 +33,7 @@ button {
 }
 .bigSwitch-on,
 .bigSwitch-off,
-.bigSwitch-breaking {
+.bigSwitch-break {
   display: none;
 }
 .bigSwitch-icon {
@@ -42,7 +42,7 @@ button {
 }
 .bigSwitch[data-bigSwitch-status="on"] .bigSwitch-on,
 .bigSwitch[data-bigSwitch-status="off"] .bigSwitch-off,
-.bigSwitch[data-bigSwitch-status="breaking"] .bigSwitch-breaking {
+.bigSwitch[data-bigSwitch-status="break"] .bigSwitch-break {
   display: block;
 }
 .bigSwitch:hover .bigSwitch-status,

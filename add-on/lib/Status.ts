@@ -1,5 +1,11 @@
 // TODO split status and settings
 
+enum CurrentStatusText {
+  on = "on",
+  off = "off",
+  break = "break",
+}
+
 interface IStatusSaveData {
   breakTimeLength: number;
   matches: string[];
@@ -61,6 +67,19 @@ class Status {
 
   public get breaking () {
     return this._startedBreakingAt !== 0;
+  }
+
+  // TODO test
+  public get text () {
+    let text: CurrentStatusText;
+    if (this.breaking) {
+      text = CurrentStatusText.break;
+    } else if (this.running) {
+      text = CurrentStatusText.on;
+    } else {
+      text = CurrentStatusText.off;
+    }
+    return text;
   }
 
   private get saveData (): IStatusSaveData {
