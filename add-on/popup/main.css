@@ -45,9 +45,11 @@ button {
 .bigSwitch[data-bigSwitch-status="breaking"] .bigSwitch-breaking {
   display: block;
 }
+.bigSwitch:hover .bigSwitch-status,
 .bigSwitch .bigSwitch-nextStatus {
   display: none;
 }
+.bigSwitch .bigSwitch-status,
 .bigSwitch:hover .bigSwitch-nextStatus {
   display: inline;
 }
