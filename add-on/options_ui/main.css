@@ -15,7 +15,7 @@ body {
 .settingsTable caption {
   font-weight: bold;
   padding: 0.4em 1em;
-  text-align-last: left;
+  text-align: left;
 }
 .settingsTable th,
 .settingsTable td {
