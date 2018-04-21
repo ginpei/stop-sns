@@ -2,15 +2,6 @@ describe("Status", () => {
   const expect = chai.expect;
 
   class TestableStatus extends Status {
-    constructor () {
-      super();
-      sinon.spy(this, "_spy_save");
-    }
-
-    public _spy_save () {
-      return Promise.resolve();
-    }
-
     public _test_setProps (values: any) {
       if (typeof values.breakTimeLength === "number") {
         this._breakTimeLength = values.breakTimeLength;
@@ -26,8 +17,8 @@ describe("Status", () => {
       }
     }
 
-    protected save () {
-      return this._spy_save();
+    public save () {
+      return super.save();
     }
   }
 
@@ -83,6 +74,7 @@ describe("Status", () => {
 
   describe("start()", () => {
     beforeEach(() => {
+      sinon.spy(status, "save");
       status._test_setProps({ running: false });
       status.start();
     });
@@ -92,17 +84,17 @@ describe("Status", () => {
     });
 
     it("calls save()", () => {
-      expect(status._spy_save).to.have.been.callCount(1);
+      expect(status.save).to.have.been.callCount(1);
     });
   });
 
   describe("stop()", () => {
     beforeEach(() => {
+      const spySave = sinon.spy(status, "save");
       sinon.spy(status, "stopBreaking");
       status.start();
       status.startBreaking();
-      const spy = status._spy_save as sinon.SinonSpy;
-      spy.resetHistory();
+      spySave.resetHistory();
       status.stop();
     });
 
@@ -115,7 +107,7 @@ describe("Status", () => {
     });
 
     it("calls save()", () => {
-      expect(status._spy_save).to.have.been.callCount(1);
+      expect(status.save).to.have.been.callCount(1);
     });
 
     it("kills a timer that stops break time", () => {
@@ -151,6 +143,7 @@ describe("Status", () => {
 
   describe("stopBreaking()", () => {
     beforeEach(() => {
+      sinon.spy(status, "save");
       const now = new Date("2000-01-01 12:34:56");
       status._test_setProps({ startedBreakingAt: now.getTime() });
       status.stopBreaking();
@@ -161,7 +154,7 @@ describe("Status", () => {
     });
 
     it("calls save()", () => {
-      expect(status._spy_save).to.have.been.callCount(1);
+      expect(status.save).to.have.been.callCount(1);
     });
   });
 
