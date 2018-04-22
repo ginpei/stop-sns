@@ -1,13 +1,32 @@
 {
   "private": true,
   "scripts": {
+    "build": "npm run install-vendor && tsc --inlineSourceMap -p ./tsconfig.prod.json ",
+    "clean": "rm add-on.zip ; find add-on/ -name *.js -exec rm {} \\;",
     "lint": "tslint add-on/**/*.ts",
-    "start": "tsc --sourceMap --watch"
+    "install-vendor": "cp node_modules/webextension-polyfill/dist/browser-polyfill.min.js add-on/vendor/webextension-polyfill/",
+    "start": "tsc --inlineSourceMap --watch",
+    "pack": "npm run clean && npm run build && cd add-on && zip -r ../add-on.zip . -x *.ts -x */.gitkeep",
+    "postinstall": "npm run install-vendor",
+    "test": "testem",
+    "test-travis": "testem ci --launch Firefox"
   },
-  "dependencies": {},
-  "devDependencies": {
-    "tslint": "^5.9.1",
+  "dependencies": {
     "typescript": "^2.8.1",
+    "webextension-polyfill": "^0.2.1",
     "web-ext-types": "^2.0.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.2",
+    "@types/mocha": "^5.0.0",
+    "@types/sinon": "^4.3.1",
+    "@types/sinon-chai": "^2.7.29",
+    "chai": "^4.1.2",
+    "mocha": "^5.0.5",
+    "sinon": "^4.5.0",
+    "sinon-chai": "^3.0.0",
+    "sinon-chrome": "^2.3.1",
+    "testem": "^2.2.1",
+    "tslint": "^5.9.1"
   }
 }

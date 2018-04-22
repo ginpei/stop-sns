@@ -1,25 +1,5 @@
-enum PopupToggle {
-  on = "on",
-  off = "off",
-}
-
 class PopupController {
   public elToggle: HTMLElement;
-
-  // set running (running: boolean) {
-  //   if (running === this._running) {
-  //     return;
-  //   }
-
-  //   if (running) {
-  //     this.elToggle.setAttribute("data-bigSwitch-toggle", PopupToggle.on);
-  //     this.status.start();
-  //   } else {
-  //     this.elToggle.setAttribute("data-bigSwitch-toggle", PopupToggle.off);
-  //     this.status.stop();
-  //   }
-
-  // }
 
   constructor (public status: Status) {
     const elToggle = document.querySelector("#toggle");
@@ -38,12 +18,22 @@ class PopupController {
       this.toggle();
     });
 
+    const elOpenOptionsPage = document.querySelector("#openOptionsPage");
+    if (!elOpenOptionsPage) {
+      throw new TypeError();
+    }
+    elOpenOptionsPage.addEventListener("click", () => {
+      browser.runtime.openOptionsPage();
+    });
+
     await this.status.init();
     this.update();
   }
 
   public toggle () {
-    if (this.status.running) {
+    if (this.status.breaking) {
+      this.status.stopBreaking();
+    } else if (this.status.running) {
       this.status.stop();
     } else {
       this.status.start();
@@ -51,13 +41,9 @@ class PopupController {
   }
 
   public update () {
-    if (this.status.running) {
-      this.elToggle.setAttribute("data-bigSwitch-toggle", PopupToggle.on);
-    } else {
-      this.elToggle.setAttribute("data-bigSwitch-toggle", PopupToggle.off);
-    }
+    this.elToggle.setAttribute("data-bigSwitch-status", this.status.text);
 
-    // to force Edge re-render
+    // to force Edge to re-render
     this.elToggle.style.pointerEvents = "none";
     setTimeout(() => this.elToggle.style.pointerEvents = "", 1);
   }

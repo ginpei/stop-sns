@@ -1,0 +1,55 @@
+button {
+  cursor: pointer;
+}
+
+.header {
+  --header-height: 30px;
+
+  display: grid;
+  grid-template-areas: "left right";
+  margin-bottom: 10px;
+}
+.header-logoGrid {
+  grid-area: left;
+  text-align: left;
+}
+.header-logo {
+  font-size: var(--header-height);
+  margin: 0;
+}
+.header-optionsGrid {
+  grid-area: right;
+  text-align: right;
+}
+.header-optionItem {
+  height: var(--header-height);
+  padding: 0;
+  width: var(--header-height);
+}
+
+.bigSwitch {
+  height: 200px;
+  width: 200px;
+}
+.bigSwitch-on,
+.bigSwitch-off,
+.bigSwitch-break {
+  display: none;
+}
+.bigSwitch-icon {
+  font-size: 100px;
+  display: block;
+}
+.bigSwitch[data-bigSwitch-status="on"] .bigSwitch-on,
+.bigSwitch[data-bigSwitch-status="off"] .bigSwitch-off,
+.bigSwitch[data-bigSwitch-status="break"] .bigSwitch-break {
+  display: block;
+}
+.bigSwitch:hover .bigSwitch-status,
+.bigSwitch .bigSwitch-nextStatus {
+  display: none;
+}
+.bigSwitch .bigSwitch-status,
+.bigSwitch:hover .bigSwitch-nextStatus {
+  display: inline;
+}

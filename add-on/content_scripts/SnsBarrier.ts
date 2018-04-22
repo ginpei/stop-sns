@@ -26,12 +26,18 @@ class SnsBarrier {
     if (okButton) {
       okButton.addEventListener("click", (event) => {
         this.reset();
-        this.startShowTimer();
+        this.startBreaking();
       });
     }
 
     document.body.appendChild(el);
     document.body.style.overflow = "hidden";
+  }
+
+  public startBreaking () {
+    this.status.startBreaking();
+
+    // break will be stopped by status
   }
 
   private buildElements () {
@@ -52,12 +58,5 @@ class SnsBarrier {
         </div>
       </div>
     `);
-  }
-
-  private startShowTimer () {
-    const interval = 30 * 1000; // 30 sec
-    this.tmShow = setTimeout(() => {
-      this.show();
-    }, interval);
   }
 }

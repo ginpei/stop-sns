@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Stop SNS</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <table class="settingsTable">
+    <caption>General</caption>
+    <tbody>
+      <tr id="runningRow">
+        <th>Status</th>
+        <td>
+          <span class="on">🏃‍ ON</span>
+          <span class="off">🧘‍ OFF</span>
+          <span class="break">☕️ Break</span>
+        </td>
+      </tr>
+      <tr>
+        <th>Break Time</th>
+        <td>
+          <input id="breakTimeLength" type="number" value="" min="1" /> min
+        </td>
+      </tr>
+      <tr>
+        <th>Target host names</th>
+        <td>
+          <textarea id="matches"></textarea>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="settingsTable">
+    <caption>Data</caption>
+    <tbody>
+      <tr>
+        <th>Reset to default</th>
+        <td><button id="reset">Reset</button></td>
+      </tr>
+      <tr>
+        <th>Revert changes</th>
+        <td><button id="revert">Revert</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <script src="../lib/api-polyfill.js"></script>
+  <script src="../vendor/webextension-polyfill/browser-polyfill.min.js"></script>
+  <script src="../lib/Status.js"></script>
+  <script src="OptionsUIController.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

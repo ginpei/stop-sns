@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Stop SNS</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-logoGrid">
+      <h1 class="header-logo">Stop SNS</h1>
+    </div>
+    <div class="header-optionsGrid">
+      <button id="openOptionsPage" class="header-optionItem" title="Options">💬</button>
+    </div>
+  </header>
+  <button id="toggle" class="bigSwitch" data-bigSwitch-status="off">
+    <span class="bigSwitch-on">
+      <span class="bigSwitch-icon">🏃‍</span>
+      <span class="bigSwitch-status">ON</span>
+      <span class="bigSwitch-nextStatus">ON → OFF</span>
+    </span>
+    <span class="bigSwitch-off">
+      <span class="bigSwitch-icon">🧘‍</span>
+      <span class="bigSwitch-status">OFF</span>
+      <span class="bigSwitch-nextStatus">OFF → ON</span>
+    </span>
+    <span class="bigSwitch-break">
+      <span class="bigSwitch-icon">☕️</span>
+      <span class="bigSwitch-status">Break</span>
+      <span class="bigSwitch-nextStatus">Break → ON</span>
+    </span>
+  </button>
+  <script src="../lib/api-polyfill.js"></script>
+  <script src="../vendor/webextension-polyfill/browser-polyfill.min.js"></script>
+  <script src="../lib/Status.js"></script>
+  <script src="PopupController.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+html {
+  font-size: 16px;
+}
+body {
+  font-size: 1rem;
+  min-width: 600px;
+}
+
+.settingsTable {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+.settingsTable caption {
+  font-weight: bold;
+  padding: 0.4em 1em;
+  text-align: left;
+}
+.settingsTable th,
+.settingsTable td {
+  border: 1px solid #ddd;
+  padding: 0.4em 1em;;
+}
+.settingsTable th {
+  font-weight: normal;
+  text-align: initial;
+  vertical-align: top;
+  width: 30%;
+}
+.settingsTable textarea {
+  width: 100%;
+}
+
+#runningRow .on,
+#runningRow .off,
+#runningRow .break {
+  display: none;
+}
+#runningRow[data-status="on"] .on,
+#runningRow[data-status="off"] .off,
+#runningRow[data-status="break"] .break {
+  display: inline;
+}
+
+#matches {
+  height: 8em;
+}

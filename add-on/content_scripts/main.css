@@ -1,6 +1,7 @@
 #stopSns {
   align-items: center;
   background-color: rgba(0,0,0,0.7);
+  box-shadow: 0 0 30vmin rgba(0,0,0,0.7) inset;
   display: flex;
   justify-content: center;
   height: 100%;
@@ -25,13 +26,13 @@
      1px -1px 0 rgba(255,255,255,0.7),
     -1px -1px 0 rgba(255,255,255,0.7),
     -1px  1px 0 rgba(255,255,255,0.7),
-    0 0 10px #000;
+    0 0 10vmin #000;
 }
 
 #stopSns .stopSns-ok {
   background-color: #c00;
   border: 1px solid rgba(255,255,255,0.7);
-  box-shadow: 0 0 10px #000;
+  box-shadow: 0 0 10vmin 1vmin #000;
   color: #fff;
   font-size: 20px;
   padding: 1em;

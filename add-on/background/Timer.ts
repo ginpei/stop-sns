@@ -6,25 +6,36 @@ class Timer {
     return !!this.startedAt;
   }
 
-  private get remainMinuteText () {
-    if (!this.running) {
+  /**
+   * - not running: `""`
+   * - running but not breaking: `"🛇"`
+   * - running and breaking: remaining time in sec if remaining time is less than 1 min
+   * - running and breaking: remaining time in min if remaining time is not less than 1 min
+   * - after finishing break: `"🛇"`
+   */
+  public get badgeText () {
+    if (!this.status.running) {
       return "";
+    } else if (!this.status.breaking) {
+      return "🛇";
     }
 
-    const sec = (Date.now() - this.startedAt) / 1000;
-    const min = sec / 60;
-    const sMin = Math.floor(min).toString();
-    return sMin;
+    const msec = this.status.remainingBreakTime;
+    if (msec <= 0) {
+      return "🛇";
+    }
+
+    const sec = Math.ceil(msec / 1000);
+    return sec > 60 ? Math.ceil(sec / 60).toString() : `.${Math.ceil(sec)}`;
   }
 
   constructor (private readonly status: Status) {
   }
 
   public async start () {
-    // TODO implement timers
-    // this.tmInterval = setInterval(() => {
-    //   this.updateBadge();
-    // }, 100);
+    this.tmInterval = setInterval(() => {
+      this.updateBadge();
+    }, 100);
 
     this.status.onChange((changes: any) => {
       this.updateBadge();
@@ -37,7 +48,7 @@ class Timer {
 
   private updateBadge () {
     browser.browserAction.setBadgeText({
-      text: this.status.running ? "🛇" : "",
+      text: this.badgeText,
     });
   }
 }

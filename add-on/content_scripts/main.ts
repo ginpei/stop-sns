@@ -3,8 +3,10 @@
   const snsBarrier = new SnsBarrier(status);
 
   function toggle () {
-    if (status.running) {
-      snsBarrier.show();
+    if (status.isTargetURL(location.href) && status.running) {
+      if (!status.breaking) {
+        snsBarrier.show();
+      }
     } else {
       snsBarrier.reset();
     }
