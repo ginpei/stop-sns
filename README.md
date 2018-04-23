@@ -5,5 +5,6 @@
 
 - [for Chrome](https://chrome.google.com/webstore/detail/stop-sns/nimjaiobllomhboniadopjnmgjfcjkil)
 - [for Firefox](https://addons.mozilla.org/en-US/firefox/addon/stop-sns/)
+- for Edge ... [Isn't it too complicated?](https://docs.microsoft.com/en-us/microsoft-edge/extensions/guides/packaging)
 
 ![Hello World!](add-on/icons/icon-1000.png)
