@@ -22,7 +22,7 @@ describe("Timer", () => {
 
     it("returns stop mark if running", () => {
       status.start();
-      expect(timer.badgeText).to.eql("🛇");
+      expect(timer.badgeText).to.eql("🚫");
     });
 
     it("returns stop mark after finishing a break", () => {
@@ -30,7 +30,7 @@ describe("Timer", () => {
       status.start();
       status.startBreaking();
       clock.tick(3 * 60 * 1000);
-      expect(timer.badgeText).to.eql("🛇");
+      expect(timer.badgeText).to.eql("🚫");
     });
 
     describe("returns current remaining break time floored in min if breaking", () => {
