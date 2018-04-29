@@ -51,7 +51,7 @@ class SnsBarrier {
     return _createElement(`
       <div id="stopSns">
         <div class="stopSns-content">
-          <h1 class="stopSns-message">🛇</h1>
+          <h1 class="stopSns-message">🚫</h1>
           <div>
             <button class="stopSns-ok">Unleash your desire...</button>
           </div>
