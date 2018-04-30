@@ -12,3 +12,4 @@
 # Resources
 
 - [File:Road-sign-no-entry.svg - Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Road-sign-no-entry.svg)
+- [SVG Drop Shadows - feOffset](https://www.w3schools.com/graphics/svg_feoffset.asp)

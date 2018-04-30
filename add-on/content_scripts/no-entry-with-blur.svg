@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="320" height="320" viewBox="0 0 320 320">
+  <defs>
+    <filter id="fBlur">
+      <feGaussianBlur result="blurOut" in="SourceAlpha" stdDeviation="5" />
+      <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+    </filter>
+  </defs>
+  <svg x="10" y="10" width="300" height="300" filter="url(#fBlur)">
+    <circle cx="150" cy="150" r="148"
+      fill="#c00" stroke="#fff" stroke-width="1" />
+    <rect x="50" y="125" width="200" height="50" fill="#ffffff" />
+  </svg>
+</svg>

@@ -48,7 +48,7 @@ class SnsBarrier {
       return el;
     }
 
-    const imagePath = browser.extension.getURL("/content_scripts/Road-sign-no-entry.svg");
+    const imagePath = browser.extension.getURL("/content_scripts/no-entry-with-blur.svg");
     return _createElement(`
       <div id="stopSns">
         <div class="stopSns-content">

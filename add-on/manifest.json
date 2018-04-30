@@ -12,7 +12,7 @@
     "storage"
   ],
   "web_accessible_resources": [
-    "content_scripts/Road-sign-no-entry.svg"
+    "content_scripts/no-entry-with-blur.svg"
   ],
   "background": {
     "scripts": [
