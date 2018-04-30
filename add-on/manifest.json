@@ -12,7 +12,7 @@
     "storage"
   ],
   "web_accessible_resources": [
-    "content_scripts/no-entry-with-blur.svg"
+    "content_scripts/noEntry-withDropShadow.svg"
   ],
   "background": {
     "scripts": [
