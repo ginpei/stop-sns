@@ -8,21 +8,21 @@ class Timer {
 
   /**
    * - not running: `""`
-   * - running but not breaking: `"🚫"`
+   * - running but not breaking: `"️️⛔️"`
    * - running and breaking: remaining time in sec if remaining time is less than 1 min
    * - running and breaking: remaining time in min if remaining time is not less than 1 min
-   * - after finishing break: `"🚫"`
+   * - after finishing break: `"️️⛔️"`
    */
   public get badgeText () {
     if (!this.status.running) {
       return "";
     } else if (!this.status.breaking) {
-      return "🚫";
+      return "️️⛔️";
     }
 
     const msec = this.status.remainingBreakTime;
     if (msec <= 0) {
-      return "🚫";
+      return "️️⛔️";
     }
 
     const sec = Math.ceil(msec / 1000);

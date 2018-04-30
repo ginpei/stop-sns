@@ -8,3 +8,8 @@
 - for Edge ... [Isn't it too complicated?](https://docs.microsoft.com/en-us/microsoft-edge/extensions/guides/packaging)
 
 ![Hello World!](add-on/icons/icon-1000.png)
+
+# Resources
+
+- [File:Road-sign-no-entry.svg - Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Road-sign-no-entry.svg)
+- [SVG Drop Shadows - feOffset](https://www.w3schools.com/graphics/svg_feoffset.asp)
