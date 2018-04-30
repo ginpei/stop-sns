@@ -53,7 +53,7 @@ class SnsBarrier {
       <div id="stopSns">
         <div class="stopSns-content">
           <h1 class="stopSns-message">
-            <img src="${imagePath}" width="300" height="300" />
+            <img src="${imagePath}" width="300" height="300" alt="⛔️" />
           </h1>
           <div>
             <button class="stopSns-ok">Unleash your desire...</button>
