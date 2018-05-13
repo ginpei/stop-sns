@@ -1,4 +1,6 @@
-class SnsBarrier {
+import Status from "../lib/Status.js";
+
+export default class SnsBarrier {
   private tmShow = 0;
 
   constructor (private readonly status: Status) {

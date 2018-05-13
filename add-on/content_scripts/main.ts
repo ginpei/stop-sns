@@ -1,3 +1,6 @@
+import Status from "../lib/Status.js";
+import SnsBarrier from "./SnsBarrier.js";
+
 (async () => {
   const status = new Status();
   const snsBarrier = new SnsBarrier(status);

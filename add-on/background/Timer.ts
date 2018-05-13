@@ -1,4 +1,6 @@
-class Timer {
+import Status from "../lib/Status.js";
+
+export default class Timer {
   public startedAt = 0;
   public tmInterval = 0;
 

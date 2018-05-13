@@ -1,4 +1,9 @@
-describe("Status", () => {
+import Status from "../../add-on/lib/Status.js";
+
+export default () => {
+  // @ts-ignore
+  const sinon = window.sinon;
+
   const expect = chai.expect;
 
   class TestableStatus extends Status {
@@ -254,4 +259,4 @@ describe("Status", () => {
       expect(status.isTargetURL("https://www.facebook.com/")).to.eql(true);
     });
   });
-});
+};

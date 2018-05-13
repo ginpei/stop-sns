@@ -1,4 +1,6 @@
-class OptionsUIController {
+import Status from "../lib/Status.js";
+
+export default class OptionsUIController {
   private readonly elRunningRow = document.querySelector("#runningRow")!;
   private readonly elBreakTimeLengthMin = document.querySelector("#breakTimeLength") as HTMLInputElement;
   private readonly elMatches = document.querySelector("#matches") as HTMLTextAreaElement;

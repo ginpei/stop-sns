@@ -15,13 +15,7 @@
     "content_scripts/noEntry-withDropShadow.svg"
   ],
   "background": {
-    "scripts": [
-      "lib/api-polyfill.js",
-      "vendor/webextension-polyfill/browser-polyfill.min.js",
-      "lib/Status.js",
-      "background/Timer.js",
-      "background/main.js"
-    ],
+    "page": "background/index.html",
     "persistent": false
   },
   "content_scripts": [

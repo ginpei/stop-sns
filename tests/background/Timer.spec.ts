@@ -1,4 +1,10 @@
-describe("Timer", () => {
+import Timer from "../../add-on/background/Timer.js";
+import Status from "../../add-on/lib/Status.js";
+
+export default () => {
+  // @ts-ignore
+  const sinon = window.sinon;
+
   const expect = chai.expect;
 
   let status: Status;
@@ -87,4 +93,4 @@ describe("Timer", () => {
       });
     });
   });
-});
+};

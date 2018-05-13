@@ -3,17 +3,15 @@
   "framework": "mocha+chai",
   "src_files": [
     "add-on/**/*.ts",
-    "tests/**/*.spec.ts"
+    "tests/**/*.spec.ts",
+    "tests/main.ts"
   ],
+  "test_page": "tests/index.mustache",
   "serve_files": [
     "./node_modules/sinon/pkg/sinon.js",
     "./node_modules/sinon-chai/lib/sinon-chai.js",
     "./node_modules/sinon-chrome/bundle/sinon-chrome-apps.min.js",
-    "add-on/**/*.js",
-    "!add-on/background/main.js",
-    "!add-on/content_scripts/main.js",
-    "!add-on/popup/main.js",
-    "!add-on/options_ui/main.js",
-    "tests/**/*.spec.js"
+    "./add-on/vendor/webextension-polyfill/browser-polyfill.min.js",
+    "./add-on/lib/api-polyfill.js"
   ]
 }

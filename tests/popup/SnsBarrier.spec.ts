@@ -1,4 +1,10 @@
-describe("SnsBarrier", () => {
+import SnsBarrier from "../../add-on/content_scripts/SnsBarrier.js";
+import Status from "../../add-on/lib/Status.js";
+
+export default () => {
+  // @ts-ignore
+  const sinon = window.sinon;
+
   const expect = chai.expect;
   let status: Status;
   let barrier: SnsBarrier;
@@ -15,4 +21,4 @@ describe("SnsBarrier", () => {
       expect(status.startBreaking).to.have.been.callCount(1);
     });
   });
-});
+};

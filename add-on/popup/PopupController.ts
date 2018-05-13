@@ -1,4 +1,6 @@
-class PopupController {
+import Status from "../lib/Status.js";
+
+export default class PopupController {
   public elToggle: HTMLElement;
 
   constructor (public status: Status) {

@@ -28,7 +28,7 @@ interface IStatusSaveData {
  * status.stop();
  * console.log(status.running); // => false
  */
-class Status {
+export default class Status {
   protected tmStopBreaking = 0;
   protected originalValues: IStatusSaveData | null = null;
 
