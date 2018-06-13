@@ -29,7 +29,7 @@ describe("Timer", () => {
       const clock = sinon.useFakeTimers(new Date("2000-01-01 12:34:56"));
       status.start();
       status.startBreaking();
-      clock.tick(3 * 60 * 1000);
+      clock.tick(23 * 60 * 1000);
       expect(timer.badgeText).to.eql("️️⛔️");
     });
 
