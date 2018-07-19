@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "typescript": "^2.8.1",
-    "webextension-polyfill": "^0.2.1",
+    "webextension-polyfill": "^0.3.0",
     "web-ext-types": "^2.0.1"
   },
   "devDependencies": {
