@@ -25,7 +25,7 @@
     "mocha": "^6.0.2",
     "sinon": "^7.2.4",
     "sinon-chai": "^3.0.0",
-    "sinon-chrome": "^2.3.1",
+    "sinon-chrome": "^3.0.0",
     "testem": "^2.2.1",
     "tslint": "^5.9.1"
   }
