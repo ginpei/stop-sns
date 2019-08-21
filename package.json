@@ -13,9 +13,9 @@
     "test-travis": "testem ci --launch Firefox"
   },
   "dependencies": {
-    "typescript": "^2.8.1",
-    "webextension-polyfill": "^0.4.0",
-    "web-ext-types": "^3.0.0"
+    "typescript": "^3.5.3",
+    "web-ext-types": "^3.0.0",
+    "webextension-polyfill": "^0.4.0"
   },
   "devDependencies": {
     "@types/chai": "^4.1.2",
