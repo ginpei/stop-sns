@@ -1,5 +1,6 @@
 {
   "private": true,
+  "name": "stop-sns",
   "scripts": {
     "build": "npm run install-vendor && tsc --inlineSourceMap -p ./tsconfig.prod.json ",
     "clean": "rm add-on.zip ; find add-on/ -name *.js -exec rm {} \\;",
@@ -12,18 +13,18 @@
     "test-travis": "testem ci --launch Firefox"
   },
   "dependencies": {
-    "typescript": "^2.8.1",
-    "webextension-polyfill": "^0.4.0",
-    "web-ext-types": "^3.0.0"
+    "typescript": "^3.5.3",
+    "web-ext-types": "^3.0.0",
+    "webextension-polyfill": "^0.4.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.1.2",
-    "@types/mocha": "^5.0.0",
-    "@types/sinon": "^7.0.11",
-    "@types/sinon-chai": "^3.2.0",
+    "@types/chai": "^4.2.0",
+    "@types/mocha": "^5.2.7",
+    "@types/sinon": "^7.0.13",
+    "@types/sinon-chai": "^3.2.3",
     "chai": "^4.1.2",
-    "mocha": "^6.0.2",
-    "sinon": "^7.3.1",
+    "mocha": "^6.2.0",
+    "sinon": "^7.4.1",
     "sinon-chai": "^3.0.0",
     "sinon-chrome": "^3.0.0",
     "testem": "^2.17.0",
