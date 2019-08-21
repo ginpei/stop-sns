@@ -1,5 +1,6 @@
 {
   "private": true,
+  "name": "stop-sns",
   "scripts": {
     "build": "npm run install-vendor && tsc --inlineSourceMap -p ./tsconfig.prod.json ",
     "clean": "rm add-on.zip ; find add-on/ -name *.js -exec rm {} \\;",
